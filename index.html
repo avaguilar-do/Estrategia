@@ -1,18 +1,1391 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tablero de Estrategia</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tablero de estrategia</title>
+<meta name="description" content="Tablero de estrategia: comunicados, temas importantes, escalaciones, decisiones y las áreas de Hub de innovación, Estrategia, Soluciones de negocio, Gestión de la estrategia y PMO.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0E1E37">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMxQjM1NUQiLz4KICA8cGF0aCBkPSJNMTAgNDQgTDMyIDEyIEwzMiA0NCBaIiBmaWxsPSIjRTc1MzAxIi8+CiAgPHBhdGggZD0iTTMyIDQ0IEw1NCAyMCBMNTQgNDQgWiIgZmlsbD0iIzdEQUNFMyIvPgogIDxyZWN0IHg9IjEwIiB5PSI0OCIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSIjN0RBQ0UzIiBvcGFjaXR5PSIuNDUiLz4KPC9zdmc+Cg==" type="image/svg+xml">
+<style>
+/* =========================================================
+Tablero de estrategia — estilos
+Paleta corporativa: Azul Profundo, Azul Horizonte (dominante),
+Naranja Legado (atención) y Rojo Cercanía (crítico).
+Sin frameworks, sin dependencias externas.
+========================================================= */
 
-    Styles.css
+:root {
+/* Paleta corporativa
+Azul Profundo #1B355D · Pantone 534 C
+Naranja Legado #E75301 · Pantone 166 C
+Rojo Cercania #983920 · Pantone 174 C
+Azul Horizonte #7DACE3 · Pantone 2142 C */
+
+--ink: #0e1e37; /* Azul Profundo oscurecido: fondo */
+--panel: #1b355d; /* Azul Profundo 100%: tarjetas */
+--panel-2: #23456f;
+--line: #2e5686;
+--line-soft: #24446c;
+--text: #eaf2fb;
+--muted: #9fbede; /* Azul Horizonte 60%: texto de apoyo */
+
+--azul: #7dace3; /* Azul Horizonte 100%: acento principal */
+--azul-claro: #a9cbec; /* Azul Horizonte 80%: enlaces y datos */
+--azul-tenue: #d1e3f6; /* Azul Horizonte 40% */
+--naranja: #e75301; /* Naranja Legado: atención y foco activo */
+--rojo: #e08f75; /* Rojo Cercanía aclarado: legible sobre azul profundo */
+
+--radio: 14px;
+--radio-s: 8px;
+--ancho: 1140px;
+
+--serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+--sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+--mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+html[data-theme="light"] {
+--ink: #eaf1f9; /* Azul Horizonte 20% */
+--panel: #ffffff;
+--panel-2: #dceaf7;
+--line: #b4d1ea;
+--line-soft: #dbe8f5;
+--text: #14294a; /* Azul Profundo */
+--muted: #4d6e97;
+
+--azul: #2c6ca6;
+--azul-claro: #1f5c94;
+--azul-tenue: #7dace3;
+--naranja: #c24500;
+--rojo: #8a3320;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+
+body {
+margin: 0;
+background: var(--ink);
+color: var(--text);
+font-family: var(--sans);
+font-size: 16px;
+line-height: 1.6;
+-webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.2; margin: 0; }
+p { margin: 0; }
+a { color: inherit; }
+
+.visually-hidden {
+position: absolute; width: 1px; height: 1px;
+padding: 0; margin: -1px; overflow: hidden;
+clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.skip {
+position: absolute; left: -9999px; top: 0; z-index: 100;
+background: var(--naranja); color: #0e1e37;
+padding: 10px 16px; border-radius: 0 0 var(--radio-s) 0;
+font-weight: 600; text-decoration: none;
+}
+.skip:focus { left: 0; }
+
+:focus-visible {
+outline: 2px solid var(--naranja);
+outline-offset: 2px;
+border-radius: 4px;
+}
+
+/* ---------------- Barra superior ---------------- */
+
+.topbar {
+position: sticky; top: 0; z-index: 30;
+background: var(--ink);
+background: color-mix(in srgb, var(--ink) 92%, transparent);
+backdrop-filter: blur(10px);
+border-bottom: 1px solid var(--line-soft);
+}
+.topbar__inner {
+max-width: var(--ancho);
+margin: 0 auto;
+padding: 12px 20px;
+display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+}
+
+.brand { display: flex; align-items: center; gap: 12px; margin-right: auto; }
+.brand__mark {
+width: 26px; height: 26px; flex: none;
+border-radius: 6px;
+background:
+linear-gradient(135deg, var(--naranja) 0 45%, transparent 45%),
+linear-gradient(315deg, var(--azul) 0 45%, transparent 45%),
+var(--panel-2);
+border: 1px solid var(--line);
+}
+.brand__text { display: flex; flex-direction: column; line-height: 1.25; }
+.brand__text strong { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; }
+.brand__text small { color: var(--azul); font-size: .78rem; }
+
+.nav { display: flex; gap: 4px; flex-wrap: wrap; }
+.nav a {
+text-decoration: none;
+color: var(--muted);
+padding: 7px 11px;
+border-radius: 999px;
+font-size: .88rem;
+border: 1px solid transparent;
+}
+.nav a:hover { color: var(--text); background: var(--panel); }
+.nav a[aria-current="true"] {
+color: var(--text);
+background: var(--panel);
+border-color: var(--line);
+}
+
+.ghost {
+font: inherit; font-size: .84rem;
+color: var(--muted);
+background: transparent;
+border: 1px solid var(--line);
+border-radius: 999px;
+padding: 7px 14px;
+cursor: pointer;
+}
+.ghost:hover { color: var(--text); border-color: var(--naranja); }
+
+/* ---------------- Hero / resumen ---------------- */
+
+.hero {
+max-width: var(--ancho);
+margin: 0 auto;
+padding: 56px 20px 32px;
+}
+.hero__kicker { color: var(--azul); font-size: .85rem; margin-bottom: 14px; }
+.hero__foco {
+font-size: clamp(1.9rem, 5vw, 3.1rem);
+max-width: 19ch;
+letter-spacing: -0.01em;
+}
+.hero__detalle {
+margin-top: 16px;
+max-width: 62ch;
+color: var(--muted);
+font-size: 1.02rem;
+}
+
+.ledger {
+margin: 34px 0 0;
+display: grid;
+gap: 1px;
+grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+background: var(--line-soft);
+border: 1px solid var(--line-soft);
+border-radius: var(--radio);
+overflow: hidden;
+}
+.ledger__item { background: var(--panel); padding: 18px 20px; }
+.ledger__item dt { color: var(--azul); font-size: .82rem; }
+.ledger__item dd {
+color: var(--azul-claro);
+margin: 4px 0 0;
+font-family: var(--serif);
+font-size: 2rem;
+line-height: 1;
+}
+.ledger__item dd span { font-size: .85rem; font-family: var(--sans); color: var(--muted); margin-left: 6px; }
+.ledger__item--alerta dd { color: var(--naranja); }
+.ledger__item--ok dd { color: var(--azul-claro); }
+
+/* ---------------- Filtros ---------------- */
+
+.filtros {
+position: sticky; top: 63px; z-index: 20;
+max-width: var(--ancho);
+margin: 26px auto 0;
+padding: 14px 20px;
+display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+background: var(--ink);
+background: color-mix(in srgb, var(--ink) 94%, transparent);
+backdrop-filter: blur(8px);
+border-top: 1px solid var(--line-soft);
+border-bottom: 1px solid var(--line-soft);
+}
+.buscador { flex: 1 1 260px; display: block; }
+.buscador input {
+width: 100%;
+font: inherit; font-size: .92rem;
+color: var(--text);
+background: var(--panel);
+border: 1px solid var(--line);
+border-radius: 999px;
+padding: 10px 16px;
+}
+.buscador input::placeholder { color: var(--muted); }
+
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip {
+font: inherit; font-size: .82rem;
+cursor: pointer;
+color: var(--muted);
+background: transparent;
+border: 1px solid var(--line);
+border-radius: 999px;
+padding: 7px 13px;
+}
+.chip:hover { color: var(--text); }
+.chip[aria-pressed="true"] {
+color: var(--ink);
+background: var(--naranja);
+border-color: var(--naranja);
+font-weight: 600;
+}
+html[data-theme="light"] .chip[aria-pressed="true"] { color: #fff; }
+
+.filtros__estado { width: 100%; color: var(--muted); font-size: .8rem; }
+
+/* ---------------- Bloques ---------------- */
+
+.bloque {
+max-width: var(--ancho);
+margin: 0 auto;
+padding: 52px 20px 12px;
+}
+.bloque__cab { margin-bottom: 24px; max-width: 70ch; }
+.bloque__cab h2 { font-size: clamp(1.45rem, 3vw, 1.95rem); }
+.bloque__desc { color: var(--muted); margin-top: 8px; font-size: .95rem; }
+
+.vacio {
+color: var(--muted);
+border: 1px dashed var(--line);
+border-radius: var(--radio);
+padding: 22px;
+font-size: .92rem;
+}
+
+/* Etiquetas de estado reutilizables */
+.pill {
+display: inline-block;
+font-size: .74rem;
+line-height: 1.5;
+padding: 2px 10px;
+border-radius: 999px;
+border: 1px solid var(--line);
+color: var(--muted);
+white-space: nowrap;
+}
+.pill--alta { color: var(--rojo); border-color: var(--rojo); }
+.pill--media { color: var(--naranja); border-color: var(--naranja); }
+.pill--baja { color: var(--azul); border-color: var(--azul); }
+.pill--info { color: var(--azul-claro); border-color: var(--azul-claro); }
+.pill--nuevo { color: var(--azul); border-color: var(--azul); }
+
+@supports (color: color-mix(in srgb, red 50%, transparent)) {
+.pill--alta { border-color: color-mix(in srgb, var(--rojo) 55%, transparent); }
+.pill--media { border-color: color-mix(in srgb, var(--naranja) 55%, transparent); }
+.pill--baja { border-color: color-mix(in srgb, var(--azul) 55%, transparent); }
+.pill--info { border-color: color-mix(in srgb, var(--azul-claro) 55%, transparent); }
+.pill--nuevo { border-color: color-mix(in srgb, var(--azul) 55%, transparent); }
+}
+
+.meta { color: var(--muted); font-size: .82rem; }
+
+/* ---------------- Comunicados (línea de tiempo) ---------------- */
+
+.linea { list-style: none; margin: 0; padding: 0; }
+.linea li {
+display: grid;
+grid-template-columns: 116px 1fr;
+gap: 24px;
+padding: 22px 0;
+border-top: 1px solid var(--line-soft);
+}
+.linea li:last-child { border-bottom: 1px solid var(--line-soft); }
+.linea__fecha { color: var(--muted); font-size: .84rem; padding-top: 3px; }
+.linea__fecha b { display: block; color: var(--azul); font-size: 1.5rem; font-family: var(--serif); font-weight: 600; }
+.linea__cuerpo h3 { font-size: 1.15rem; margin-bottom: 6px; }
+.linea__cuerpo p { color: var(--muted); font-size: .94rem; max-width: 72ch; }
+.linea__tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; align-items: center; }
+
+/* ---------------- Temas importantes (rejilla) ---------------- */
+
+.rejilla {
+display: grid;
+gap: 16px;
+grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+.tema {
+background: var(--panel);
+border: 1px solid var(--line-soft);
+border-radius: var(--radio);
+padding: 20px;
+display: flex; flex-direction: column; gap: 10px;
+}
+.tema h3 { font-size: 1.08rem; }
+.tema__txt { color: var(--muted); font-size: .92rem; }
+.tema__pie {
+margin-top: auto; padding-top: 12px;
+border-top: 1px solid var(--line-soft);
+display: flex; justify-content: space-between; gap: 10px; align-items: center; flex-wrap: wrap;
+}
+.tema__tags { display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* ---------------- Escalaciones (tabla) ---------------- */
+
+.tabla {
+border: 1px solid var(--line-soft);
+border-radius: var(--radio);
+overflow: hidden;
+}
+.fila {
+display: grid;
+grid-template-columns: 6px 1fr 150px 130px;
+align-items: center;
+gap: 16px;
+padding: 0;
+background: var(--panel);
+border-bottom: 1px solid var(--line-soft);
+}
+.fila:last-child { border-bottom: 0; }
+.fila__barra { align-self: stretch; background: var(--line); }
+.fila--critica .fila__barra { background: #983920; }
+.fila--alta .fila__barra { background: var(--naranja); }
+.fila--media .fila__barra { background: var(--azul); }
+.fila--baja .fila__barra { background: var(--azul-tenue); }
+.fila__main { padding: 16px 0; }
+.fila__main h3 { font-size: 1.02rem; margin-bottom: 4px; }
+.fila__main p { color: var(--muted); font-size: .88rem; max-width: 70ch; }
+.fila__dueno { color: var(--muted); font-size: .85rem; padding: 16px 0; }
+.fila__estado { padding: 16px 16px 16px 0; text-align: right; }
+.fila__dias { display: block; color: var(--muted); font-size: .78rem; margin-top: 6px; }
+
+/* ---------------- Decisiones (bitácora) ---------------- */
+
+.bitacora { display: grid; gap: 14px; }
+.decision {
+background: var(--panel);
+border: 1px solid var(--line-soft);
+border-left: 3px solid var(--azul);
+border-radius: var(--radio-s);
+padding: 0;
+}
+.decision--pendiente { border-left-color: var(--naranja); }
+.decision--revertida { border-left-color: #983920; }
+.decision summary {
+cursor: pointer;
+list-style: none;
+padding: 18px 20px;
+display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap;
+}
+.decision summary::-webkit-details-marker { display: none; }
+.decision summary h3 { font-size: 1.05rem; flex: 1 1 240px; }
+.decision__id { font-family: var(--mono); font-size: .78rem; color: var(--muted); }
+.decision__cuerpo { padding: 0 20px 20px; display: grid; gap: 12px; }
+.decision__cuerpo dt { color: var(--azul); font-size: .8rem; }
+.decision__cuerpo dd { margin: 2px 0 0; font-size: .94rem; max-width: 74ch; }
+
+/* ---------------- Áreas (pestañas) ---------------- */
+
+.tabs {
+display: flex; gap: 6px; flex-wrap: wrap;
+border-bottom: 1px solid var(--line-soft);
+padding-bottom: 12px;
+margin-bottom: 26px;
+}
+.tab {
+font: inherit; font-size: .9rem;
+cursor: pointer;
+background: transparent;
+color: var(--muted);
+border: 1px solid var(--line);
+border-radius: 999px;
+padding: 9px 16px;
+}
+.tab:hover { color: var(--text); }
+.tab[aria-selected="true"] {
+color: var(--text);
+background: var(--panel-2);
+border-color: var(--azul);
+}
+
+.area { display: grid; gap: 26px; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: start; }
+.area[hidden] { display: none; }
+.area__intro h3 { font-size: clamp(1.4rem, 3vw, 1.9rem); margin-bottom: 10px; }
+.area__mision { color: var(--muted); max-width: 62ch; }
+.area__focos { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 10px; }
+.area__focos li {
+display: flex; gap: 12px; align-items: flex-start;
+font-size: .94rem;
+padding-left: 0;
+}
+.area__focos li::before {
+content: ""; flex: none;
+width: 7px; height: 7px; margin-top: 9px;
+border-radius: 2px; background: var(--azul);
+transform: rotate(45deg);
+}
+.area__lado {
+background: var(--panel);
+border: 1px solid var(--line-soft);
+border-radius: var(--radio);
+padding: 20px;
+}
+.area__lado h4 { margin: 0 0 14px; font-family: var(--sans); font-size: .9rem; color: var(--azul); font-weight: 600; }
+.iniciativa { padding: 12px 0; border-top: 1px solid var(--line-soft); }
+.iniciativa:first-of-type { border-top: 0; padding-top: 0; }
+.iniciativa__cab { display: flex; justify-content: space-between; gap: 10px; font-size: .92rem; }
+.iniciativa__cab span { color: var(--muted); font-variant-numeric: tabular-nums; }
+.barra {
+margin-top: 8px; height: 6px; border-radius: 999px;
+background: var(--line-soft); overflow: hidden;
+}
+.barra > i { display: block; height: 100%; background: linear-gradient(90deg, var(--azul) 0%, var(--azul-claro) 100%); border-radius: 999px; }
+.area__contacto { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line-soft); font-size: .86rem; color: var(--muted); }
+
+/* ---------------- Pie ---------------- */
+
+.pie {
+margin-top: 70px;
+border-top: 1px solid var(--line-soft);
+background: var(--panel);
+}
+.pie__inner {
+max-width: var(--ancho);
+margin: 0 auto;
+padding: 28px 20px;
+display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+color: var(--muted); font-size: .88rem;
+}
+.pie code { font-family: var(--mono); font-size: .85em; color: var(--text); }
+.pie a { color: var(--azul); }
+
+/* ---------------- Responsive ---------------- */
+
+@media (max-width: 900px) {
+.area { grid-template-columns: 1fr; }
+.fila { grid-template-columns: 6px 1fr; }
+.fila__dueno { padding: 0 0 8px; }
+.fila__estado { padding: 0 16px 16px 0; text-align: left; grid-column: 2; }
+}
+
+@media (max-width: 720px) {
+.topbar__inner { padding: 10px 16px; gap: 10px; }
+.nav { order: 3; width: 100%; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 2px; }
+.nav a { white-space: nowrap; }
+.filtros { position: static; }
+.hero { padding-top: 38px; }
+.linea li { grid-template-columns: 1fr; gap: 8px; }
+.linea__fecha { display: flex; align-items: baseline; gap: 8px; }
+.linea__fecha b { font-size: 1.1rem; }
+.bloque { padding-top: 40px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+html { scroll-behavior: auto; }
+* { transition: none !important; animation: none !important; }
+}
+
+@media print {
+.topbar, .filtros, .tabs, .ghost { display: none !important; }
+body { background: #fff; color: #000; }
+.area[hidden] { display: grid !important; }
+}
+
+</style>
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tablero de estrategia">
+<meta property="og:description" content="Comunicados, temas, escalaciones y decisiones de la oficina de estrategia.">
 </head>
 <body>
+<a class="skip" href="#contenido">Ir al contenido</a>
 
-    <h1>Tablero de Estrategia</h1>
+<header class="topbar">
+<div class="topbar__inner">
+<div class="brand">
+<span class="brand__mark" aria-hidden="true"></span>
+<span class="brand__text">
+<strong>Tablero de estrategia</strong>
+<small id="meta-periodo">Cargando periodo…</small>
+</span>
+</div>
 
-    <p>Mi sitio está publicado con GitHub Pages.</p>
+<nav class="nav" aria-label="Secciones del tablero">
+<a href="#resumen">Resumen</a>
+<a href="#comunicados">Comunicados</a>
+<a href="#temas">Temas importantes</a>
+<a href="#escalaciones">Escalaciones</a>
+<a href="#decisiones">Decisiones</a>
+<a href="#areas">Áreas</a>
+</nav>
 
+<button id="btn-tema" class="ghost" type="button" aria-pressed="false">
+<span id="btn-tema-txt">Modo claro</span>
+</button>
+</div>
+</header>
+
+<main id="contenido">
+
+<!-- ============ RESUMEN ============ -->
+<section id="resumen" class="hero" aria-labelledby="h-resumen">
+<p class="hero__kicker" id="meta-actualizado">Última actualización: —</p>
+<h1 id="h-resumen" class="hero__foco">Cargando el foco del trimestre…</h1>
+<p class="hero__detalle" id="hero-detalle"></p>
+
+<dl class="ledger" id="ledger" aria-label="Indicadores del tablero"></dl>
+</section>
+
+<!-- ============ FILTROS ============ -->
+<div class="filtros" role="search">
+<label class="buscador">
+<span class="visually-hidden">Buscar en el tablero</span>
+<input id="buscar" type="search" placeholder="Buscar por título, responsable o palabra clave" autocomplete="off">
+</label>
+<div class="chips" id="chips-area" role="group" aria-label="Filtrar por área"></div>
+<p class="filtros__estado" id="estado-filtro" role="status" aria-live="polite"></p>
+</div>
+
+<!-- ============ COMUNICADOS ============ -->
+<section id="comunicados" class="bloque" aria-labelledby="h-comunicados">
+<div class="bloque__cab">
+<h2 id="h-comunicados">Comunicados</h2>
+<p class="bloque__desc">Lo que se informa a toda la organización. Ordenado de lo más reciente a lo más antiguo.</p>
+</div>
+<ol class="linea" id="lista-comunicados"></ol>
+<p class="vacio" id="vacio-comunicados" hidden>No hay comunicados para este filtro. Prueba con otra área o limpia la búsqueda.</p>
+</section>
+
+<!-- ============ TEMAS IMPORTANTES ============ -->
+<section id="temas" class="bloque" aria-labelledby="h-temas">
+<div class="bloque__cab">
+<h2 id="h-temas">Temas importantes</h2>
+<p class="bloque__desc">Asuntos vivos que necesitan seguimiento semanal del comité.</p>
+</div>
+<div class="rejilla" id="lista-temas"></div>
+<p class="vacio" id="vacio-temas" hidden>No hay temas para este filtro.</p>
+</section>
+
+<!-- ============ ESCALACIONES ============ -->
+<section id="escalaciones" class="bloque" aria-labelledby="h-escalaciones">
+<div class="bloque__cab">
+<h2 id="h-escalaciones">Escalaciones</h2>
+<p class="bloque__desc">Bloqueos que ya superaron al equipo y esperan respuesta de un nivel superior.</p>
+</div>
+<div class="tabla" id="lista-escalaciones"></div>
+<p class="vacio" id="vacio-escalaciones" hidden>No hay escalaciones para este filtro.</p>
+</section>
+
+<!-- ============ DECISIONES ============ -->
+<section id="decisiones" class="bloque" aria-labelledby="h-decisiones">
+<div class="bloque__cab">
+<h2 id="h-decisiones">Decisiones</h2>
+<p class="bloque__desc">Bitácora de acuerdos: qué se decidió, quién lo aprobó y qué cambia a partir de ahí.</p>
+</div>
+<div class="bitacora" id="lista-decisiones"></div>
+<p class="vacio" id="vacio-decisiones" hidden>No hay decisiones para este filtro.</p>
+</section>
+
+<!-- ============ ÁREAS ============ -->
+<section id="areas" class="bloque" aria-labelledby="h-areas">
+<div class="bloque__cab">
+<h2 id="h-areas">Áreas</h2>
+<p class="bloque__desc">Cada área explica su misión, sus focos del trimestre y el avance de sus iniciativas.</p>
+</div>
+
+<div class="tabs" id="tabs-areas" role="tablist" aria-label="Áreas de la organización"></div>
+<div id="paneles-areas"></div>
+</section>
+
+</main>
+
+<footer class="pie">
+<div class="pie__inner">
+<p>
+Tablero mantenido por la oficina de estrategia.
+Para actualizar el contenido edita el bloque <code>window.TABLERO</code> de este mismo archivo y haz commit en <code>main</code>.
+</p>
+<p><a id="link-repo" href="https://github.com/avaguilar-do/Estrategia">Repositorio en GitHub</a></p>
+</div>
+</footer>
+
+<!-- ================= DATOS: edita aquí ================= -->
+<script>
+/* =========================================================
+DATOS DEL TABLERO
+Este es el único bloque que necesitas editar.
+Reglas:
+- "area" debe coincidir con un id de la lista AREAS.
+- Las fechas van en formato ISO: "AAAA-MM-DD".
+- Prioridad/severidad: "critica" | "alta" | "media" | "baja".
+========================================================= */
+
+window.TABLERO = {
+
+meta: {
+periodo: "Q3 2026 · Ciclo de planeación",
+actualizado: "2026-09-17",
+foco: "Menos iniciativas, más decisiones ejecutadas.",
+detalle:
+"Este trimestre concentramos el portafolio en tres apuestas y liberamos capacidad de PMO " +
+"para acelerarlas. Aquí encuentras lo que se comunicó, lo que sigue abierto, lo que está " +
+"bloqueado y lo que ya se decidió.",
+repositorio: "https://github.com/avaguilar-do/Estrategia"
+},
+
+/* ---------- Áreas ---------- */
+areas: [
+{
+id: "hub-innovacion",
+nombre: "Hub de innovación",
+lider: "Dirección de Innovación",
+mision:
+"Explorar ideas fuera del negocio actual y convertir las que prueban valor en pilotos con dueño y presupuesto.",
+focos: [
+"Filtrar la cartera de ideas con un criterio único de valor y esfuerzo.",
+"Llevar dos pilotos de IA aplicada a resultado medible antes de diciembre.",
+"Publicar el ciclo de convocatorias internas para toda la organización."
+],
+iniciativas: [
+{ nombre: "Laboratorio de pilotos con IA", avance: 62 },
+{ nombre: "Convocatoria interna de ideas", avance: 80 },
+{ nombre: "Alianzas con universidades", avance: 35 }
+],
+contacto: "innovacion@empresa.com"
+},
+{
+id: "estrategia",
+nombre: "Estrategia",
+lider: "Vicepresidencia de Estrategia",
+mision:
+"Definir hacia dónde va la compañía, con qué apuestas compite y cómo se mide el avance.",
+focos: [
+"Cerrar el marco estratégico 2027 con metas por unidad de negocio.",
+"Revisar el mapa competitivo cada trimestre con datos de mercado.",
+"Traducir la estrategia a objetivos que los equipos puedan usar."
+],
+iniciativas: [
+{ nombre: "Marco estratégico 2027", avance: 48 },
+{ nombre: "Tablero de indicadores corporativos", avance: 70 },
+{ nombre: "Análisis competitivo regional", avance: 55 }
+],
+contacto: "estrategia@empresa.com"
+},
+{
+id: "soluciones-negocio",
+nombre: "Soluciones de negocio",
+lider: "Dirección de Soluciones",
+mision:
+"Diseñar y entregar soluciones que resuelvan necesidades reales de las áreas operativas y de los clientes.",
+focos: [
+"Estandarizar el levantamiento de requerimientos por unidad.",
+"Reducir el tiempo entre solicitud y solución entregada.",
+"Medir adopción real, no solo entregas cerradas."
+],
+iniciativas: [
+{ nombre: "Catálogo único de soluciones", avance: 66 },
+{ nombre: "Rediseño del proceso de atención", avance: 41 },
+{ nombre: "Automatización de reportes operativos", avance: 74 }
+],
+contacto: "soluciones@empresa.com"
+},
+{
+id: "gestion-estrategia",
+nombre: "Gestión de la estrategia",
+lider: "Oficina de Gestión Estratégica",
+mision:
+"Mantener viva la estrategia: seguimiento, ritmo de revisión, comunicación y rendición de cuentas.",
+focos: [
+"Sostener el ritmo de revisión mensual con evidencia, no con opiniones.",
+"Cerrar la brecha entre lo planeado y lo ejecutado en cada unidad.",
+"Mantener este tablero como fuente única de verdad."
+],
+iniciativas: [
+{ nombre: "Ritmo de seguimiento mensual", avance: 88 },
+{ nombre: "Modelo de rendición de cuentas", avance: 52 },
+{ nombre: "Comunicación de la estrategia", avance: 60 }
+],
+contacto: "gestion.estrategia@empresa.com"
+},
+{
+id: "pmo",
+nombre: "PMO",
+lider: "Oficina de Proyectos",
+mision:
+"Asegurar que el portafolio se ejecuta con método, con recursos claros y con riesgos visibles a tiempo.",
+focos: [
+"Mantener el portafolio priorizado y sin proyectos huérfanos.",
+"Elevar riesgos críticos en menos de 48 horas.",
+"Publicar el estado del portafolio cada dos semanas."
+],
+iniciativas: [
+{ nombre: "Priorización del portafolio", avance: 77 },
+{ nombre: "Gestión de riesgos y dependencias", avance: 58 },
+{ nombre: "Plantillas y gobierno de proyectos", avance: 92 }
+],
+contacto: "pmo@empresa.com"
+}
+],
+
+/* ---------- Comunicados ---------- */
+comunicados: [
+{
+titulo: "Cierre de la planeación Q3 y arranque del ciclo 2027",
+fecha: "2026-09-15",
+area: "estrategia",
+autor: "Vicepresidencia de Estrategia",
+etiqueta: "Corporativo",
+resumen:
+"Quedó cerrada la planeación del trimestre con tres apuestas priorizadas. El 1 de octubre arranca el levantamiento del marco 2027 con talleres por unidad de negocio."
+},
+{
+titulo: "Nuevo ritmo de seguimiento: revisión mensual con evidencia",
+fecha: "2026-09-08",
+area: "gestion-estrategia",
+autor: "Oficina de Gestión Estratégica",
+etiqueta: "Proceso",
+resumen:
+"A partir de octubre la revisión mensual exige indicador actualizado y avance documentado. Sin evidencia cargada, la iniciativa se reporta como sin dato."
+},
+{
+titulo: "Convocatoria interna de ideas: 74 propuestas recibidas",
+fecha: "2026-09-02",
+area: "hub-innovacion",
+autor: "Hub de innovación",
+etiqueta: "Innovación",
+resumen:
+"Se recibieron 74 ideas de 11 áreas. Doce pasan a evaluación de valor y esfuerzo; los resultados se publican el 30 de septiembre."
+},
+{
+titulo: "Catálogo único de soluciones disponible para consulta",
+fecha: "2026-08-26",
+area: "soluciones-negocio",
+autor: "Dirección de Soluciones",
+etiqueta: "Entrega",
+resumen:
+"Ya puedes consultar qué soluciones existen antes de pedir una nueva. Cada ficha incluye responsable, alcance y tiempo estimado de atención."
+},
+{
+titulo: "Corte quincenal del portafolio: 38 proyectos activos",
+fecha: "2026-08-19",
+area: "pmo",
+autor: "PMO",
+etiqueta: "Portafolio",
+resumen:
+"De 38 proyectos activos, 6 están en rojo por dependencias de terceros y 4 se cerraron anticipadamente por baja adopción esperada."
+}
+],
+
+/* ---------- Temas importantes ---------- */
+temas: [
+{
+titulo: "Capacidad de equipos técnicos para las tres apuestas",
+area: "pmo",
+prioridad: "alta",
+estado: "En análisis",
+responsable: "Oficina de Proyectos",
+actualizado: "2026-09-16",
+detalle:
+"La demanda comprometida supera en 1.4x la capacidad disponible. Se evalúa mover dos proyectos de bajo impacto al siguiente trimestre."
+},
+{
+titulo: "Definición de métricas para el marco 2027",
+area: "estrategia",
+prioridad: "alta",
+estado: "En construcción",
+responsable: "Vicepresidencia de Estrategia",
+actualizado: "2026-09-14",
+detalle:
+"Faltan metas comparables entre unidades. Sin una base común, el tablero corporativo no permite comparar el avance real."
+},
+{
+titulo: "Adopción del catálogo de soluciones",
+area: "soluciones-negocio",
+prioridad: "media",
+estado: "En seguimiento",
+responsable: "Dirección de Soluciones",
+actualizado: "2026-09-11",
+detalle:
+"El catálogo se publicó, pero el 60% de las solicitudes sigue llegando por canales informales. Se refuerza la comunicación con líderes de área."
+},
+{
+titulo: "Criterio único para evaluar ideas del hub",
+area: "hub-innovacion",
+prioridad: "media",
+estado: "En definición",
+responsable: "Hub de innovación",
+actualizado: "2026-09-09",
+detalle:
+"Cada comité aplica su propio criterio. Se propone una matriz de valor y esfuerzo con umbrales fijos para pasar de idea a piloto."
+},
+{
+titulo: "Calidad del dato en el seguimiento mensual",
+area: "gestion-estrategia",
+prioridad: "alta",
+estado: "En remediación",
+responsable: "Oficina de Gestión Estratégica",
+actualizado: "2026-09-05",
+detalle:
+"Un tercio de los indicadores se reporta con más de 30 días de rezago. Se define responsable de dato por indicador."
+},
+{
+titulo: "Continuidad del piloto de IA en atención interna",
+area: "hub-innovacion",
+prioridad: "baja",
+estado: "Esperando resultados",
+responsable: "Hub de innovación",
+actualizado: "2026-08-30",
+detalle:
+"El piloto termina el 15 de octubre. La decisión de escalar depende del ahorro de tiempo medido en las áreas participantes."
+}
+],
+
+/* ---------- Escalaciones ---------- */
+escalaciones: [
+{
+titulo: "Presupuesto no liberado para el laboratorio de pilotos",
+area: "hub-innovacion",
+severidad: "critica",
+estado: "Abierta",
+responsable: "Comité de Inversiones",
+abierta: "2026-09-04",
+detalle:
+"Sin liberación antes del 25 de septiembre, los dos pilotos de IA se detienen y se pierde la ventana del trimestre."
+},
+{
+titulo: "Dependencia externa bloquea la integración de reportes",
+area: "soluciones-negocio",
+severidad: "alta",
+estado: "Abierta",
+responsable: "Dirección de Tecnología",
+abierta: "2026-09-01",
+detalle:
+"El proveedor no confirma fecha de entrega del servicio de datos. Afecta a tres proyectos del portafolio."
+},
+{
+titulo: "Conflicto de prioridades entre dos unidades de negocio",
+area: "pmo",
+severidad: "alta",
+estado: "En atención",
+responsable: "Comité Ejecutivo",
+abierta: "2026-08-28",
+detalle:
+"Ambas unidades reclaman el mismo equipo técnico para septiembre. Se requiere decisión de priorización al más alto nivel."
+},
+{
+titulo: "Indicadores corporativos sin responsable asignado",
+area: "gestion-estrategia",
+severidad: "media",
+estado: "En atención",
+responsable: "Oficina de Gestión Estratégica",
+abierta: "2026-08-20",
+detalle:
+"Nueve indicadores del tablero no tienen dueño del dato, por lo que nadie responde por su actualización."
+},
+{
+titulo: "Retraso en la validación del marco estratégico",
+area: "estrategia",
+severidad: "media",
+estado: "Cerrada",
+responsable: "Vicepresidencia de Estrategia",
+abierta: "2026-07-30",
+cerrada: "2026-09-10",
+detalle:
+"Se reagendaron los talleres de validación y el calendario quedó alineado con el arranque del ciclo 2027."
+}
+],
+
+/* ---------- Decisiones ---------- */
+decisiones: [
+{
+id: "DEC-2026-014",
+titulo: "Concentrar el portafolio en tres apuestas estratégicas",
+fecha: "2026-09-12",
+area: "estrategia",
+estado: "Aprobada",
+responsable: "Comité Ejecutivo",
+contexto:
+"El portafolio tenía 38 proyectos activos y una capacidad comprometida por encima de lo disponible.",
+decision:
+"Se priorizan tres apuestas y se congelan las iniciativas que no aportan directamente a ellas.",
+impacto:
+"Nueve proyectos pasan a pausa formal. La capacidad liberada se reasigna a las apuestas priorizadas."
+},
+{
+id: "DEC-2026-013",
+titulo: "Exigir evidencia en la revisión mensual de avance",
+fecha: "2026-09-05",
+area: "gestion-estrategia",
+estado: "Aprobada",
+responsable: "Oficina de Gestión Estratégica",
+contexto:
+"El seguimiento se apoyaba en reportes verbales y en indicadores desactualizados.",
+decision:
+"Toda iniciativa presenta indicador actualizado y evidencia cargada antes de la sesión mensual.",
+impacto:
+"Las iniciativas sin evidencia se reportan como sin dato y no consumen tiempo de comité."
+},
+{
+id: "DEC-2026-012",
+titulo: "Adoptar una matriz única de valor y esfuerzo para ideas",
+fecha: "2026-08-29",
+area: "hub-innovacion",
+estado: "En validación",
+responsable: "Hub de innovación",
+contexto:
+"Cada comité evaluaba ideas con criterios distintos, lo que hacía imposible comparar propuestas.",
+decision:
+"Se adopta una matriz común con umbrales fijos para pasar de idea a piloto y de piloto a escalamiento.",
+impacto:
+"Pendiente de validación por el Comité de Inversiones antes de aplicarse a la convocatoria vigente."
+},
+{
+id: "DEC-2026-011",
+titulo: "Publicar el estado del portafolio cada dos semanas",
+fecha: "2026-08-18",
+area: "pmo",
+estado: "Aprobada",
+responsable: "PMO",
+contexto:
+"El estado del portafolio solo se conocía en la sesión mensual, cuando ya era tarde para reaccionar.",
+decision:
+"La PMO publica un corte quincenal con semáforo, riesgos abiertos y dependencias críticas.",
+impacto:
+"Los riesgos se elevan antes y el comité mensual se enfoca en decidir, no en informarse."
+},
+{
+id: "DEC-2026-010",
+titulo: "Centralizar las solicitudes en el catálogo de soluciones",
+fecha: "2026-08-07",
+area: "soluciones-negocio",
+estado: "Aprobada",
+responsable: "Dirección de Soluciones",
+contexto:
+"Las solicitudes llegaban por correo, chat y reuniones, sin trazabilidad ni priorización.",
+decision:
+"Toda solicitud nueva entra por el catálogo, con responsable y alcance definidos desde el inicio.",
+impacto:
+"Las solicitudes fuera del canal no se atienden a partir del 1 de octubre."
+}
+]
+};
+
+</script>
+
+<!-- ================= LÓGICA: no hace falta tocar ================= -->
+<script>
+/* =========================================================
+LÓGICA DEL TABLERO
+Render a partir de window.TABLERO (bloque de datos de arriba).
+Sin dependencias: JavaScript estándar del navegador.
+========================================================= */
+
+(function () {
+"use strict";
+
+var D = window.TABLERO;
+var $ = function (sel) { return document.querySelector(sel); };
+
+if (!D) {
+document.getElementById("contenido").innerHTML =
+'<section class="bloque"><p class="vacio">No se cargó el bloque de datos. ' +
+'Revisa que el script window.TABLERO esté antes del script de lógica.</p></section>';
+return;
+}
+
+/* ---------------- Utilidades ---------------- */
+
+var MESES = ["ene", "feb", "mar", "abr", "may", "jun",
+"jul", "ago", "sep", "oct", "nov", "dic"];
+
+function esc(v) {
+return String(v == null ? "" : v)
+.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+.replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+
+function partes(iso) {
+var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ""));
+if (!m) return null;
+return { a: +m[1], m: +m[2], d: +m[3] };
+}
+
+function fechaLarga(iso) {
+var p = partes(iso);
+return p ? p.d + " " + MESES[p.m - 1] + " " + p.a : String(iso || "");
+}
+
+function diasDesde(iso) {
+var p = partes(iso);
+if (!p) return null;
+var ini = Date.UTC(p.a, p.m - 1, p.d);
+var hoy = new Date();
+var fin = Date.UTC(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
+return Math.max(0, Math.round((fin - ini) / 86400000));
+}
+
+function nombreArea(id) {
+for (var i = 0; i < D.areas.length; i++) {
+if (D.areas[i].id === id) return D.areas[i].nombre;
+}
+return "Sin área";
+}
+
+function claseNivel(n) {
+var v = String(n || "").toLowerCase();
+if (v === "critica" || v === "crítica" || v === "alta") return "pill--alta";
+if (v === "media") return "pill--media";
+if (v === "baja") return "pill--baja";
+return "pill--info";
+}
+
+function texto(obj) {
+var out = [];
+Object.keys(obj).forEach(function (k) {
+var v = obj[k];
+if (typeof v === "string" || typeof v === "number") out.push(v);
+});
+out.push(nombreArea(obj.area));
+return out.join(" ").toLowerCase();
+}
+
+function normaliza(s) {
+s = String(s || "").toLowerCase();
+return s.normalize ? s.normalize("NFD").replace(/[\u0300-\u036f]/g, "") : s;
+}
+
+function porFecha(campo) {
+return function (a, b) { return String(b[campo] || "").localeCompare(String(a[campo] || "")); };
+}
+
+/* ---------------- Estado de filtros ---------------- */
+
+var estado = { area: "todas", q: "" };
+
+function pasa(item) {
+if (estado.area !== "todas" && item.area !== estado.area) return false;
+if (!estado.q) return true;
+return normaliza(texto(item)).indexOf(normaliza(estado.q)) !== -1;
+}
+
+/* ---------------- Cabecera y resumen ---------------- */
+
+function pintarCabecera() {
+$("#meta-periodo").textContent = D.meta.periodo || "";
+$("#meta-actualizado").textContent = "Última actualización: " + fechaLarga(D.meta.actualizado);
+$("#h-resumen").textContent = D.meta.foco || "Tablero de estrategia";
+$("#hero-detalle").textContent = D.meta.detalle || "";
+if (D.meta.repositorio) $("#link-repo").setAttribute("href", D.meta.repositorio);
+}
+
+function pintarLedger() {
+var abiertas = D.escalaciones.filter(function (e) {
+return String(e.estado).toLowerCase() !== "cerrada";
+}).length;
+
+var altas = D.temas.filter(function (t) {
+return String(t.prioridad).toLowerCase() === "alta";
+}).length;
+
+var aprobadas = D.decisiones.filter(function (d) {
+return String(d.estado).toLowerCase() === "aprobada";
+}).length;
+
+var todas = [];
+D.areas.forEach(function (a) {
+(a.iniciativas || []).forEach(function (i) { todas.push(Number(i.avance) || 0); });
+});
+var promedio = todas.length
+? Math.round(todas.reduce(function (s, n) { return s + n; }, 0) / todas.length)
+: 0;
+
+var items = [
+{ t: "Escalaciones abiertas", v: abiertas, mod: abiertas > 0 ? "alerta" : "ok" },
+{ t: "Temas de prioridad alta", v: altas, mod: "" },
+{ t: "Decisiones aprobadas", v: aprobadas, mod: "ok" },
+{ t: "Avance del portafolio", v: promedio, u: "%", mod: "" }
+];
+
+$("#ledger").innerHTML = items.map(function (i) {
+return '<div class="ledger__item' + (i.mod ? " ledger__item--" + i.mod : "") + '">' +
+"<dt>" + esc(i.t) + "</dt>" +
+"<dd>" + esc(i.v) + (i.u ? "<span>" + esc(i.u) + "</span>" : "") + "</dd>" +
+"</div>";
+}).join("");
+}
+
+/* ---------------- Filtros ---------------- */
+
+function pintarChips() {
+var lista = [{ id: "todas", nombre: "Todas las áreas" }].concat(D.areas);
+$("#chips-area").innerHTML = lista.map(function (a) {
+return '<button type="button" class="chip" data-area="' + esc(a.id) + '" ' +
+'aria-pressed="' + (a.id === estado.area) + '">' + esc(a.nombre) + "</button>";
+}).join("");
+
+$("#chips-area").addEventListener("click", function (ev) {
+var b = ev.target.closest(".chip");
+if (!b) return;
+estado.area = b.getAttribute("data-area");
+Array.prototype.forEach.call(this.querySelectorAll(".chip"), function (c) {
+c.setAttribute("aria-pressed", String(c.getAttribute("data-area") === estado.area));
+});
+pintarTodo();
+});
+}
+
+function pintarBuscador() {
+var input = $("#buscar");
+var t;
+input.addEventListener("input", function () {
+clearTimeout(t);
+var v = input.value;
+t = setTimeout(function () { estado.q = v.trim(); pintarTodo(); }, 140);
+});
+}
+
+/* ---------------- Secciones ---------------- */
+
+function vacio(id, hay) {
+var n = document.getElementById(id);
+if (n) n.hidden = hay;
+}
+
+function pintarComunicados() {
+var datos = D.comunicados.filter(pasa).sort(porFecha("fecha"));
+$("#lista-comunicados").innerHTML = datos.map(function (c) {
+var p = partes(c.fecha);
+return "<li>" +
+'<div class="linea__fecha"><b>' + (p ? esc(p.d) : "") + "</b>" +
+"<span>" + (p ? esc(MESES[p.m - 1] + " " + p.a) : esc(c.fecha)) + "</span></div>" +
+'<div class="linea__cuerpo">' +
+"<h3>" + esc(c.titulo) + "</h3>" +
+"<p>" + esc(c.resumen) + "</p>" +
+'<div class="linea__tags">' +
+'<span class="pill pill--info">' + esc(c.etiqueta || "Comunicado") + "</span>" +
+'<span class="pill">' + esc(nombreArea(c.area)) + "</span>" +
+'<span class="meta">Publicado por ' + esc(c.autor || "—") + "</span>" +
+"</div>" +
+"</div>" +
+"</li>";
+}).join("");
+vacio("vacio-comunicados", datos.length > 0);
+return datos.length;
+}
+
+function pintarTemas() {
+var datos = D.temas.filter(pasa).sort(porFecha("actualizado"));
+$("#lista-temas").innerHTML = datos.map(function (t) {
+return '<article class="tema">' +
+"<h3>" + esc(t.titulo) + "</h3>" +
+'<p class="tema__txt">' + esc(t.detalle) + "</p>" +
+'<div class="tema__pie">' +
+'<div class="tema__tags">' +
+'<span class="pill ' + claseNivel(t.prioridad) + '">Prioridad ' + esc(t.prioridad) + "</span>" +
+'<span class="pill">' + esc(t.estado) + "</span>" +
+"</div>" +
+'<span class="meta">' + esc(t.responsable) + " · " + esc(fechaLarga(t.actualizado)) + "</span>" +
+"</div>" +
+"</article>";
+}).join("");
+vacio("vacio-temas", datos.length > 0);
+return datos.length;
+}
+
+function pintarEscalaciones() {
+var orden = { critica: 0, alta: 1, media: 2, baja: 3 };
+var datos = D.escalaciones.filter(pasa).sort(function (a, b) {
+var ca = String(a.estado).toLowerCase() === "cerrada" ? 1 : 0;
+var cb = String(b.estado).toLowerCase() === "cerrada" ? 1 : 0;
+if (ca !== cb) return ca - cb;
+var oa = orden[String(a.severidad).toLowerCase()];
+var ob = orden[String(b.severidad).toLowerCase()];
+return (oa === undefined ? 9 : oa) - (ob === undefined ? 9 : ob);
+});
+
+$("#lista-escalaciones").innerHTML = datos.map(function (e) {
+var cerrada = String(e.estado).toLowerCase() === "cerrada";
+var dias = diasDesde(e.abierta);
+return '<article class="fila fila--' + esc(String(e.severidad).toLowerCase()) + '">' +
+'<div class="fila__barra" aria-hidden="true"></div>' +
+'<div class="fila__main">' +
+"<h3>" + esc(e.titulo) + "</h3>" +
+"<p>" + esc(e.detalle) + "</p>" +
+"</div>" +
+'<div class="fila__dueno">' + esc(e.responsable) + "<br>" +
+'<span class="meta">' + esc(nombreArea(e.area)) + "</span></div>" +
+'<div class="fila__estado">' +
+'<span class="pill ' + (cerrada ? "pill--baja" : claseNivel(e.severidad)) + '">' +
+esc(e.estado) + "</span>" +
+'<span class="fila__dias">' +
+(cerrada
+? "Cerrada el " + esc(fechaLarga(e.cerrada || e.abierta))
+: (dias === null ? "" : "Abierta hace " + dias + " días")) +
+"</span>" +
+"</div>" +
+"</article>";
+}).join("");
+vacio("vacio-escalaciones", datos.length > 0);
+return datos.length;
+}
+
+function pintarDecisiones() {
+var datos = D.decisiones.filter(pasa).sort(porFecha("fecha"));
+$("#lista-decisiones").innerHTML = datos.map(function (d, idx) {
+var est = String(d.estado).toLowerCase();
+var mod = est === "aprobada" ? "" : (est.indexOf("revert") === 0 ? " decision--revertida" : " decision--pendiente");
+return "<details class=\"decision" + mod + "\"" + (idx === 0 ? " open" : "") + ">" +
+"<summary>" +
+'<span class="decision__id">' + esc(d.id) + "</span>" +
+"<h3>" + esc(d.titulo) + "</h3>" +
+'<span class="pill">' + esc(d.estado) + "</span>" +
+'<span class="meta">' + esc(fechaLarga(d.fecha)) + "</span>" +
+"</summary>" +
+'<dl class="decision__cuerpo">' +
+"<div><dt>Contexto</dt><dd>" + esc(d.contexto) + "</dd></div>" +
+"<div><dt>Decisión</dt><dd>" + esc(d.decision) + "</dd></div>" +
+"<div><dt>Qué cambia</dt><dd>" + esc(d.impacto) + "</dd></div>" +
+"<div><dt>Aprobada por</dt><dd>" + esc(d.responsable) + " — " + esc(nombreArea(d.area)) + "</dd></div>" +
+"</dl>" +
+"</details>";
+}).join("");
+vacio("vacio-decisiones", datos.length > 0);
+return datos.length;
+}
+
+/* ---------------- Áreas (pestañas) ---------------- */
+
+function pintarAreas() {
+$("#tabs-areas").innerHTML = D.areas.map(function (a, i) {
+return '<button type="button" class="tab" role="tab" id="tab-' + esc(a.id) + '" ' +
+'aria-controls="panel-' + esc(a.id) + '" aria-selected="' + (i === 0) + '" ' +
+'tabindex="' + (i === 0 ? "0" : "-1") + '">' + esc(a.nombre) + "</button>";
+}).join("");
+
+$("#paneles-areas").innerHTML = D.areas.map(function (a, i) {
+var inis = (a.iniciativas || []).map(function (x) {
+var pct = Math.max(0, Math.min(100, Number(x.avance) || 0));
+return '<div class="iniciativa">' +
+'<div class="iniciativa__cab"><span>' + esc(x.nombre) + "</span><span>" + pct + "%</span></div>" +
+'<div class="barra" role="img" aria-label="Avance ' + pct + ' por ciento">' +
+'<i style="width:' + pct + '%"></i></div>' +
+"</div>";
+}).join("");
+
+return '<section class="area" id="panel-' + esc(a.id) + '" role="tabpanel" ' +
+'aria-labelledby="tab-' + esc(a.id) + '" tabindex="0"' + (i === 0 ? "" : " hidden") + ">" +
+'<div class="area__intro">' +
+"<h3>" + esc(a.nombre) + "</h3>" +
+'<p class="area__mision">' + esc(a.mision) + "</p>" +
+'<ul class="area__focos">' +
+(a.focos || []).map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("") +
+"</ul>" +
+"</div>" +
+'<div class="area__lado">' +
+"<h4>Iniciativas en curso</h4>" + inis +
+'<p class="area__contacto">' + esc(a.lider || "") +
+(a.contacto ? " · " + esc(a.contacto) : "") + "</p>" +
+"</div>" +
+"</section>";
+}).join("");
+
+var tabs = Array.prototype.slice.call($("#tabs-areas").querySelectorAll(".tab"));
+
+function activar(i, mover) {
+tabs.forEach(function (t, j) {
+var on = i === j;
+t.setAttribute("aria-selected", String(on));
+t.tabIndex = on ? 0 : -1;
+document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+});
+if (mover) tabs[i].focus();
+}
+
+tabs.forEach(function (t, i) {
+t.addEventListener("click", function () { activar(i, false); });
+t.addEventListener("keydown", function (ev) {
+var k = ev.key;
+if (k === "ArrowRight" || k === "ArrowDown") { ev.preventDefault(); activar((i + 1) % tabs.length, true); }
+if (k === "ArrowLeft" || k === "ArrowUp") { ev.preventDefault(); activar((i - 1 + tabs.length) % tabs.length, true); }
+if (k === "Home") { ev.preventDefault(); activar(0, true); }
+if (k === "End") { ev.preventDefault(); activar(tabs.length - 1, true); }
+});
+});
+}
+
+/* ---------------- Tema claro / oscuro ---------------- */
+
+function iniciarTema() {
+var CLAVE = "tablero-tema";
+var guardado = null;
+try { guardado = localStorage.getItem(CLAVE); } catch (e) { guardado = null; }
+
+var inicial = guardado ||
+(window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+
+aplicar(inicial);
+
+$("#btn-tema").addEventListener("click", function () {
+var actual = document.documentElement.getAttribute("data-theme");
+var nuevo = actual === "dark" ? "light" : "dark";
+aplicar(nuevo);
+try { localStorage.setItem(CLAVE, nuevo); } catch (e) { /* sin almacenamiento */ }
+});
+
+function aplicar(modo) {
+document.documentElement.setAttribute("data-theme", modo);
+$("#btn-tema-txt").textContent = modo === "dark" ? "Modo claro" : "Modo oscuro";
+$("#btn-tema").setAttribute("aria-pressed", String(modo === "light"));
+}
+}
+
+/* ---------------- Sección activa en el menú ---------------- */
+
+function iniciarNav() {
+var enlaces = Array.prototype.slice.call(document.querySelectorAll(".nav a"));
+var secciones = enlaces
+.map(function (a) { return document.querySelector(a.getAttribute("href")); })
+.filter(Boolean);
+
+if (!("IntersectionObserver" in window) || !secciones.length) return;
+
+var obs = new IntersectionObserver(function (entradas) {
+entradas.forEach(function (e) {
+if (!e.isIntersecting) return;
+enlaces.forEach(function (a) {
+a.setAttribute("aria-current", String(a.getAttribute("href") === "#" + e.target.id));
+});
+});
+}, { rootMargin: "-40% 0px -55% 0px" });
+
+secciones.forEach(function (s) { obs.observe(s); });
+}
+
+/* ---------------- Orquestación ---------------- */
+
+function pintarTodo() {
+var n = pintarComunicados() + pintarTemas() + pintarEscalaciones() + pintarDecisiones();
+var total = D.comunicados.length + D.temas.length + D.escalaciones.length + D.decisiones.length;
+var filtro = estado.area === "todas" ? "todas las áreas" : nombreArea(estado.area);
+$("#estado-filtro").textContent =
+"Mostrando " + n + " de " + total + " registros · " + filtro +
+(estado.q ? ' · búsqueda: "' + estado.q + '"' : "");
+}
+
+pintarCabecera();
+pintarLedger();
+pintarChips();
+pintarBuscador();
+pintarAreas();
+iniciarTema();
+iniciarNav();
+pintarTodo();
+})();
+
+</script>
 </body>
 </html>
-
