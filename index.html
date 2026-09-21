@@ -664,59 +664,7 @@ comunicados: [],
 temas: [],
 
 /* ---------- Escalaciones ---------- */
-escalaciones: [
-{
-titulo: "Presupuesto no liberado para el laboratorio de pilotos",
-area: "hub-innovacion",
-severidad: "critica",
-estado: "Abierta",
-responsable: "Comité de Inversiones",
-abierta: "2026-09-04",
-detalle:
-"Sin liberación antes del 25 de septiembre, los dos pilotos de IA se detienen y se pierde la ventana del trimestre."
-},
-{
-titulo: "Dependencia externa bloquea la integración de reportes",
-area: "soluciones-negocio",
-severidad: "alta",
-estado: "Abierta",
-responsable: "Dirección de Tecnología",
-abierta: "2026-09-01",
-detalle:
-"El proveedor no confirma fecha de entrega del servicio de datos. Afecta a tres proyectos del portafolio."
-},
-{
-titulo: "Conflicto de prioridades entre dos unidades de negocio",
-area: "pmo",
-severidad: "alta",
-estado: "En atención",
-responsable: "Comité Ejecutivo",
-abierta: "2026-08-28",
-detalle:
-"Ambas unidades reclaman el mismo equipo técnico para septiembre. Se requiere decisión de priorización al más alto nivel."
-},
-{
-titulo: "Indicadores corporativos sin responsable asignado",
-area: "gestion-estrategia",
-severidad: "media",
-estado: "En atención",
-responsable: "Oficina de Gestión Estratégica",
-abierta: "2026-08-20",
-detalle:
-"Nueve indicadores del tablero no tienen dueño del dato, por lo que nadie responde por su actualización."
-},
-{
-titulo: "Retraso en la validación del marco estratégico",
-area: "estrategia",
-severidad: "media",
-estado: "Cerrada",
-responsable: "Vicepresidencia de Estrategia",
-abierta: "2026-07-30",
-cerrada: "2026-09-10",
-detalle:
-"Se reagendaron los talleres de validación y el calendario quedó alineado con el arranque del ciclo 2027."
-}
-]
+escalaciones: []
 };
 
 </script>
@@ -951,7 +899,7 @@ esc(e.estado) + "</span>" +
 "</article>";
 }).join("");
 vacio("vacio-escalaciones", datos.length, D.escalaciones.length,
-"Por ahora no hay escalaciones abiertas.");
+"Por ahora no hay escalaciones.");
 return datos.length;
 }
 
@@ -1043,6 +991,7 @@ function pintarTodo() {
 var n = pintarComunicados() + pintarTemas() + pintarEscalaciones();
 var total = D.comunicados.length + D.temas.length + D.escalaciones.length;
 var filtro = estado.area === "todas" ? "todas las áreas" : nombreArea(estado.area);
+if (total === 0) { $("#estado-filtro").textContent = ""; return; }
 $("#estado-filtro").textContent =
 "Mostrando " + n + " de " + total + " registros · " + filtro +
 (estado.q ? ' · búsqueda: "' + estado.q + '"' : "");
