@@ -1,65 +1,91 @@
-# Tablero de estrategia
+# Dirección de estrategia
 
-Sitio estático (HTML + CSS + JavaScript, sin frameworks ni build) para publicar en GitHub Pages.
+Sitio estático para GitHub Pages. Sin frameworks, sin build, sin dependencias.
+Navegación por hash: cada sección tiene su propia dirección, compartible.
 
-**URL de publicación:** https://avaguilar-do.github.io/Estrategia/
+**URL:** https://avaguilar-do.github.io/Estrategia/
 
-## Estructura
+## Los 6 archivos
 
 ```
-Estrategia/
-├── index.html Página principal del tablero
-├── 404.html Página de error para GitHub Pages
-├── .nojekyll Evita que Jekyll procese el sitio
-├── README.md Este archivo
-└── assets/
-├── styles.css Estilos (tema oscuro y claro)
-├── data.js Contenido del tablero ← lo único que editas a diario
-├── app.js Render, filtros, búsqueda y pestañas
-└── favicon.svg Ícono del sitio
+index.html el cascarón ← no se edita
+estilos.css todos los estilos ← solo para cambiar diseño
+tablero.js el motor ← no se edita
+secciones/
+resumen.js ← Comunicados, temas, escalaciones, objetivo
+estructura.js ← Las áreas de la Dirección
+soluciones.js ← Soluciones de Negocio completo
 ```
 
-## Paleta corporativa
+La regla: **una sección, un archivo.** Para actualizar comunicados abres
+`secciones/resumen.js` y nada más. Para Soluciones de Negocio, `secciones/soluciones.js`.
+Los otros tres archivos se quedan quietos.
 
-| Color | Hex | Pantone | Uso en el tablero |
-|---|---|---|---|
-| Azul Profundo | `#1B355D` | 534 C | Fondo y superficie de tarjetas |
-| Azul Horizonte | `#7DACE3` | 2142 C | Acento principal: datos, enlaces, avances, pestañas |
-| Naranja Legado | `#E75301` | 166 C | Atención: filtro activo, prioridad alta, escalación |
-| Rojo Cercanía | `#983920` | 174 C | Severidad crítica y decisiones revertidas |
+Dentro de cada archivo de sección hay dos bloques claramente marcados:
 
-Los colores viven en variables CSS al inicio de `assets/styles.css`; cambiarlos ahí cambia todo el sitio.
+- **BLOQUE 1 · CONTENIDO** — aquí editas.
+- **BLOQUE 2 · CÓMO SE DIBUJA** — normalmente no se toca.
 
-## Secciones
+## Direcciones
 
-- **Comunicados** — lo que se informa a toda la organización.
-- **Temas importantes** — asuntos vivos con seguimiento semanal.
-- **Escalaciones** — bloqueos que esperan respuesta de un nivel superior.
-- **Decisiones** — bitácora de acuerdos con contexto, decisión e impacto.
-- **Áreas** — Hub de innovación, Estrategia, Soluciones de negocio, Gestión de la estrategia y PMO.
+| Página | Dirección |
+|---|---|
+| Resumen (objetivo, comunicados, temas, escalaciones) | `#resumen` |
+| Estructura (las 6 áreas) | `#estructura` |
+| Soluciones de Negocio | `#soluciones` |
+| → Proyectos por programa | `#soluciones/programas` |
+| → Organigrama | `#soluciones/organigrama` |
+| → Carga por persona | `#soluciones/carga` |
+| → Capacidades | `#soluciones/capacidades` |
+| → Riesgos y recomendaciones | `#soluciones/riesgos` |
 
-## Publicar en GitHub Pages
+## Agregar un comunicado
 
-1. Sube los archivos a la rama `main` (raíz del repositorio).
-2. En GitHub: **Settings → Pages**.
-3. En *Build and deployment* elige **Source: Deploy from a branch**.
-4. En *Branch* selecciona **main** y carpeta **/ (root)**. Guarda con **Save**.
-5. Espera 1–2 minutos. Aparecerá el aviso *Your site is live at…*.
-6. Marca la casilla **Enforce HTTPS** en la misma pantalla.
+Abre `secciones/resumen.js`, busca `comunicados: [` y escribe dentro:
 
-## Actualizar el contenido
+```js
+comunicados: [
+{ titulo: "Título del comunicado",
+fecha: "2026-10-20",
+area: "Estrategia",
+autor: "Vicepresidencia de Estrategia",
+etiqueta: "Corporativo",
+resumen: "Texto del comunicado." }
+],
+```
 
-Edita `assets/data.js` y haz commit en `main`. GitHub Pages republica solo.
+Haz commit y listo. Los temas y las escalaciones funcionan igual; los campos de
+cada uno están comentados en el archivo.
 
-- `area` debe coincidir con un `id` de la lista `areas`: `hub-innovacion`, `estrategia`, `soluciones-negocio`, `gestion-estrategia`, `pmo`.
-- Fechas en formato `AAAA-MM-DD`.
-- Prioridad y severidad: `critica`, `alta`, `media` o `baja`.
-- `avance` de cada iniciativa: número de 0 a 100.
+## Agregar un área nueva
+
+Abre `secciones/estructura.js` y copia uno de los objetos existentes dentro de
+`areas: [ ]`. El `id` debe ser único y sin espacios.
+
+## Publicar
+
+1. Sube los archivos a la rama `main`, respetando la carpeta `secciones/`.
+2. Settings → Pages → Source: *Deploy from a branch* → Branch `main`, carpeta `/ (root)`.
+3. Marca **Enforce HTTPS**.
+
+Falta subir `logo-consubanco.png` a la raíz. Mientras no esté, la cabecera
+muestra la palabra «Consubanco» en texto.
+
+## Paleta
+
+| Color | Hex | Pantone |
+|---|---|---|
+| Azul Profundo | `#1B355D` | 534 C |
+| Azul Horizonte | `#7DACE3` | 2142 C |
+| Naranja Legado | `#E75301` | 166 C |
+| Rojo Cercanía | `#983920` | 174 C |
+| Negro | `#000000` | — |
+
+Los valores viven en `:root`, al principio de `estilos.css`.
 
 ## Probar en local
 
-Abre `index.html` con doble clic, o levanta un servidor:
-
 ```bash
 python3 -m http.server 8080
-# luego abre http://localhost:8080
+# abre http://localhost:8080
+```
