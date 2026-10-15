@@ -388,7 +388,6 @@ display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
 .pcard__num { text-align: right; flex: none; }
 .pcard__num b { display: block; font-family: var(--serif); font-size: 1.75rem; line-height: 1; color: var(--profundo); }
 .pcard__num span { display: block; font-size: .71rem; color: var(--suave); }
-.pcard__num .pcard__np { color: var(--alerta); font-weight: 700; margin-top: 3px; }
 .pcard__lista { margin: 13px 0 0; padding: 13px 0 0; border-top: 1px solid var(--linea-sut); display: grid; gap: 7px; }
 .pcard__lista li { font-size: .84rem; display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: baseline; }
 .pcard__p { line-height: 1.4; }
@@ -509,7 +508,7 @@ grid-template-columns: 32px 118px 1fr; gap: 12px; align-items: baseline; }
 .cadena li b { display: block; font-size: .85rem; color: var(--azul-fuerte); margin-bottom: 3px; }
 .cadena li span { font-size: .81rem; color: var(--suave); }
 
-.roles { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); }
+.roles { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); align-items: start; }
 .rol { background: var(--panel); border: 1px solid var(--linea-sut); border-radius: var(--radio-s); overflow: hidden; }
 .rol__cab { background: var(--profundo); color: #fff; padding: 13px 18px; }
 .rol__cab h5 { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; }
@@ -518,8 +517,8 @@ grid-template-columns: 32px 118px 1fr; gap: 12px; align-items: baseline; }
 .rol dt { font-size: .75rem; font-weight: 700; color: var(--alerta); margin-top: 12px; }
 .rol dt:first-child { margin-top: 0; }
 .rol dd { margin: 3px 0 0; font-size: .85rem; color: var(--suave); line-height: 1.55; }
-.rol--pend .rol__cab { background: var(--profundo-80); }
-.rol--pend dd { font-style: italic; }
+.rol__lista { margin: 0; padding-left: 17px; display: grid; gap: 7px; }
+.rol__lista li { font-size: .84rem; color: var(--suave); line-height: 1.5; }
 
 .aviso {
 margin-top: 18px; padding: 13px 18px; font-size: .86rem;
@@ -606,3 +605,4 @@ border-radius: var(--radio-s); padding: 15px 19px; margin-bottom: 30px;
 .datos[open] summary { display: none; }
 .cifras, .riesgos, .disc, .roles, .personas, .org__celulas { break-inside: avoid; }
 }
+
