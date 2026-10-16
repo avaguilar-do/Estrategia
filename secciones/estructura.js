@@ -81,19 +81,25 @@ contacto: "17 recursos · 7 células + UX/UI · 35 proyectos"
 {
 id: "nuevas-lineas",
 nombre: "Nuevas Líneas de negocio",
-lider: "Dirección de Nuevas Líneas de Negocio",
-ejemplo: true,
-mision: "Identificar, evaluar y lanzar nuevas fuentes de ingreso alineadas con la estrategia, desde la oportunidad hasta el caso de negocio aprobado.",
+lider: "Gerencia de Nuevas Líneas de Negocio",
+enlace: "#nuevas-lineas",
+mision: "Abrir y consolidar nuevas líneas de negocio en banca Empresarial.",
 focos: [
-"Mantener un embudo de oportunidades evaluadas con criterios comunes.",
-"Llevar los casos de negocio priorizados a comité con dueño y presupuesto.",
-"Medir la tracción de cada línea lanzada durante sus primeros meses."
+"Identificar oportunidades no atendidas en el segmento Pyme dentro de la banca mayorista y dimensionar su potencial de mercado.",
+"Diseñar la propuesta de valor, el modelo de negocio.",
+"Construir el caso de negocio",
+"Definir el modelo de atención y originación: perfil de cliente, oferta de crédito, servicios transaccionales y experiencia.",
+"Coordinar con Riesgos, Crédito, Jurídico, Cumplimiento y Finanzas la viabilidad regulatoria y el apetito de riesgo.",
+"Diseñar y ejecutar pilotos comerciales controlados para validar demanda, precio, riesgo y rentabilidad antes de escalar.",
+"Establecer alianzas con actores del ecosistema —fintechs, cámaras, proveedores y programas de fomento— que aceleren el alcance."
 ],
-iniciativas: [
-{ nombre: "Embudo de oportunidades", avance: 40 },
-{ nombre: "Casos de negocio priorizados", avance: 25 },
-{ nombre: "Seguimiento de líneas lanzadas", avance: 10 }
-]
+/* Resumen lateral: pares etiqueta / valor */
+cifras: [
+{ nombre: "Proyecto del área", valor: "Banca Empresarial" },
+{ nombre: "Actividades finalizadas", valor: "13" },
+{ nombre: "Siguientes actividades", valor: "8" }
+],
+contacto: "3 integrantes"
 },
 {
 id: "gestion-estrategia",
@@ -156,7 +162,12 @@ return '<button type="button" role="tab" id="tab-' + U.esc(a.id) + '" ' +
 
 var paneles = areas.map(function (a, i) {
 var lado;
-if (a.programas && a.programas.length) {
+if (a.cifras && a.cifras.length) {
+lado = "<h4>En resumen</h4>" + a.cifras.map(function (c) {
+return '<div class="iniciativa"><div class="iniciativa__cab">' +
+"<span>" + U.esc(c.nombre) + "</span><span>" + U.esc(c.valor) + "</span></div></div>";
+}).join("");
+} else if (a.programas && a.programas.length) {
 lado = "<h4>Programas que atiende</h4>" + a.programas.map(function (p) {
 return '<div class="iniciativa"><div class="iniciativa__cab">' +
 "<span>" + U.esc(p.nombre) + "</span><span>" + p.sn + " de " + p.total + "</span></div>" +
