@@ -15,8 +15,7 @@ BLOQUE 1 · CONTENIDO — edita aquí
 window.NUEVAS_LINEAS = {
 
 meta: {
-titulo: "Nuevas Líneas de Negocio",
-bajada: "Organigrama, objetivo, carga de trabajo del equipo y proyecto del área."
+titulo: "Nuevas Líneas de Negocio"
 },
 
 /* ---------- Organigrama (lámina 1) ---------- */
@@ -70,7 +69,7 @@ siguientesActividades: [
 /* ---------- Proyecto del área ---------- */
 proyecto: {
 nombre: "Banca Empresarial",
-enlace: "https://avaguilar-do.github.io/Banca-Empresarial/#timeline",
+enlace: "https://avaguilar-do.github.io/Banca-Empresarial/#tablero",
 textoEnlace: "Abrir el tablero de Banca Empresarial"
 }
 };
@@ -120,10 +119,19 @@ var U = window.UI, d = D(), H = [];
 H.push('<div class="cita">' +
 '<p class="sub" style="margin:0 0 7px">Objetivo</p>' + U.esc(d.objetivo) + "</div>");
 
+/* Icono de objetivo: diana de dos anillos. Dibujado aquí para no
+depender de archivos externos ni de tipografías de iconos. */
+var ICONO =
+'<svg class="resp__i" viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" focusable="false">' +
+'<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6" opacity=".45"/>' +
+'<circle cx="12" cy="12" r="4.6" fill="none" stroke="currentColor" stroke-width="1.6"/>' +
+'<circle cx="12" cy="12" r="1.7" fill="currentColor"/>' +
+"</svg>";
+
 H.push(U.bloque("Responsabilidades", null,
-'<ol class="resp">' + (d.responsabilidades || []).map(function (r, i) {
-return '<li><span class="resp__n">' + (i + 1) + "</span>" +
-'<span class="resp__t">' + U.esc(r) + "</span></li>"; }).join("") + "</ol>"));
+'<ul class="resp">' + (d.responsabilidades || []).map(function (r) {
+return "<li>" + ICONO + '<span class="resp__t">' + U.esc(r) + "</span></li>";
+}).join("") + "</ul>"));
 
 return H.join("");
 }
@@ -139,9 +147,9 @@ H.push(U.cifras([
 ]));
 
 function lista(items, clase) {
-return '<ol class="acts ' + clase + '">' + items.map(function (t) {
+return '<ul class="acts ' + clase + '">' + items.map(function (t) {
 return '<li><span class="acts__m" aria-hidden="true"></span>' +
-'<span class="acts__t">' + U.esc(t) + "</span></li>"; }).join("") + "</ol>";
+'<span class="acts__t">' + U.esc(t) + "</span></li>"; }).join("") + "</ul>";
 }
 
 H.push(U.bloque("Actividades finalizadas", null, lista(fin, "acts--fin")));
@@ -171,7 +179,6 @@ return {
 titulo: "Nuevas Líneas de Negocio",
 ruta: "Dirección de Estrategia · Estructura",
 h1: (window.NUEVAS_LINEAS && window.NUEVAS_LINEAS.meta.titulo) || "Nuevas Líneas de Negocio",
-bajada: (window.NUEVAS_LINEAS && window.NUEVAS_LINEAS.meta.bajada) || "",
 subvistas: SUB,
 
 render: function (sub) {
@@ -195,3 +202,4 @@ location.hash = "#nuevas-lineas/" + b.getAttribute("data-sub");
 }
 };
 })();
+
