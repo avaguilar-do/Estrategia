@@ -16,8 +16,6 @@ BLOQUE 1 · CONTENIDO — edita aquí
 
 window.ESTRUCTURA = {
 
-descripcion: "Cada área explica su misión, sus focos y el estado de su portafolio.",
-
 areas: [
 {
 id: "hub-innovacion",
@@ -147,7 +145,6 @@ window.VISTAS.estructura = {
 titulo: "Estructura",
 ruta: "Dirección de Estrategia",
 h1: "Estructura",
-bajada: "Las áreas que integran la Dirección de Estrategia, su misión, sus focos y el estado de su portafolio.",
 
 render: function () {
 var U = window.UI, D = window.ESTRUCTURA || { areas: [] };
