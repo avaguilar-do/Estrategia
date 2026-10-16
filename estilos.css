@@ -118,16 +118,44 @@ padding-left: 14px; border-left: 1px solid var(--linea);
 
 /* ---------------- Navegación principal ---------------- */
 
-.nav { display: flex; gap: 6px; flex-wrap: wrap; }
+.nav { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .nav a {
 text-decoration: none; color: var(--suave);
 padding: 8px 15px; border-radius: 999px;
 font-size: .9rem; font-weight: 500;
 border: 1px solid transparent;
+white-space: nowrap;
 }
 .nav a:hover { color: var(--profundo); background: var(--panel-2); }
 .nav a[aria-current="page"] {
 color: #fff; background: var(--profundo); border-color: var(--profundo); font-weight: 600;
+}
+
+/* Un grupo: la sección padre y, colgando de ella, sus áreas */
+.nav__grupo {
+display: flex; align-items: center; gap: 8px;
+padding: 3px 4px 3px 3px;
+border: 1px solid var(--linea-sut);
+border-radius: 999px;
+background: var(--horizonte-10);
+}
+.nav__grupo.es-activo { border-color: var(--horizonte); }
+.nav__hijas { display: flex; align-items: center; gap: 4px; position: relative; padding-left: 18px; }
+/* Marca de dependencia: las áreas cuelgan de la sección padre */
+.nav__hijas::before {
+content: ""; position: absolute; left: 5px; top: 50%;
+width: 9px; height: 11px; margin-top: -9px;
+border-left: 2px solid var(--horizonte);
+border-bottom: 2px solid var(--horizonte);
+border-radius: 0 0 0 3px;
+}
+.nav a.nav__hija {
+font-size: .83rem; padding: 6px 13px;
+color: var(--azul); background: var(--panel); border-color: var(--linea);
+}
+.nav a.nav__hija:hover { border-color: var(--horizonte); background: var(--horizonte-15); }
+.nav a.nav__hija[aria-current="page"] {
+color: #fff; background: var(--azul-fuerte); border-color: var(--azul-fuerte);
 }
 
 /* ---------------- Página ---------------- */
@@ -605,4 +633,70 @@ border-radius: var(--radio-s); padding: 15px 19px; margin-bottom: 30px;
 .datos[open] summary { display: none; }
 .cifras, .riesgos, .disc, .roles, .personas, .org__celulas { break-inside: avoid; }
 }
+
+/* =====================================================================
+NUEVAS LÍNEAS DE NEGOCIO
+Reutiliza el organigrama, la tipografía y la paleta de Soluciones
+de Negocio; solo añade las piezas propias de esta sección.
+===================================================================== */
+
+/* Organigrama de dos ramas: centrado, sin estirarse de lado a lado */
+.org__celulas--2 {
+grid-template-columns: repeat(2, minmax(0, 260px));
+justify-content: center;
+}
+/* La rama abarca solo el ancho de las dos tarjetas */
+.org__rama--2 { max-width: 534px; margin-left: auto; margin-right: auto; }
+
+/* Responsabilidades numeradas */
+.resp { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px;
+background: var(--linea); border: 1px solid var(--linea);
+border-radius: var(--radio-s); overflow: hidden; }
+.resp li {
+list-style: none;
+background: var(--panel); padding: 14px 18px;
+display: grid; grid-template-columns: 21px 1fr; gap: 14px; align-items: start;
+}
+.resp__i { color: var(--azul); flex: none; margin-top: 1px; }
+.resp__t { font-size: .93rem; line-height: 1.6; }
+
+/* Listas de actividades */
+.acts { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.acts li {
+list-style: none;
+background: var(--panel); border: 1px solid var(--linea-sut);
+border-left: 4px solid var(--horizonte);
+border-radius: var(--radio-s); padding: 13px 17px;
+display: grid; grid-template-columns: 9px 1fr; gap: 13px; align-items: start;
+}
+/* Viñeta de punto */
+.acts__m { width: 8px; height: 8px; margin-top: 8px; border-radius: 50%; flex: none; }
+.acts--fin li { border-left-color: var(--azul-fuerte); }
+.acts--fin .acts__m { background: var(--azul-fuerte); }
+.acts--sig li { border-left-color: var(--horizonte); }
+.acts--sig .acts__m { background: var(--horizonte); }
+.acts__t { font-size: .91rem; line-height: 1.6; }
+
+/* Proyecto del área */
+.proy {
+background: var(--panel); border: 1px solid var(--linea-sut);
+border-top: 4px solid var(--naranja);
+border-radius: var(--radio); padding: 26px 28px;
+max-width: 560px;
+}
+.proy h3 { font-size: clamp(1.5rem, 3.4vw, 2.1rem); color: var(--profundo); }
+.proy__link { margin-top: 20px; }
+.proy__link a {
+display: inline-block; text-decoration: none;
+background: var(--profundo); color: #fff;
+padding: 12px 22px; border-radius: 999px;
+font-size: .91rem; font-weight: 600;
+}
+.proy__link a:hover { background: var(--azul-fuerte); }
+
+@media (max-width: 760px) {
+.org__celulas--2 { grid-template-columns: 1fr; }
+.resp li { gap: 11px; }
+}
+
 
