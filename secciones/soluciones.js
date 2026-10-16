@@ -17,7 +17,6 @@ window.SOLUCIONES = {
 
 meta: {
 titulo: "Soluciones de Negocio",
-bajada: "Estructura, portafolio y capacidades de la Subdirección de Soluciones de Negocio.",
 lider: { rol: "Líder Soluciones de Negocio", nombre: "Karen de Jesus Ramirez Uscanga" }
 },
 
@@ -448,7 +447,6 @@ return {
 titulo: "Soluciones de Negocio",
 ruta: "Dirección de Estrategia · Estructura",
 h1: "Soluciones de Negocio",
-bajada: (window.SOLUCIONES && window.SOLUCIONES.meta.bajada) || "",
 subvistas: SUB,
 
 render: function (sub) {
@@ -472,4 +470,3 @@ location.hash = "#soluciones/" + b.getAttribute("data-sub");
 }
 };
 })();
-
