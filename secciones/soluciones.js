@@ -201,7 +201,7 @@ window.VISTAS.soluciones = (function () {
 
 var SUB = [
 { id: "organigrama", n: "Organigrama" },
-{ id: "capacidades", n: "Capacidades" },
+{ id: "capacidades", n: "Objetivo" },
 { id: "programas", n: "Proyectos por programa" },
 { id: "carga", n: "Carga por persona" }
 ];
@@ -472,5 +472,4 @@ location.hash = "#soluciones/" + b.getAttribute("data-sub");
 }
 };
 })();
-
 
