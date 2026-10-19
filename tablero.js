@@ -127,7 +127,7 @@ window.ROUTER = (function () {
 para que se vea que esas áreas cuelgan de Estructura. */
 var MENU = [
 { id: "resumen" },
-{ id: "estructura", hijas: ["soluciones", "nuevas-lineas"] }
+{ id: "estructura", hijas: ["hub-innovacion", "soluciones", "nuevas-lineas"] }
 ];
 var INICIO = "resumen";
 
