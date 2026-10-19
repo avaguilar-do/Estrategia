@@ -699,4 +699,129 @@ font-size: .91rem; font-weight: 600;
 .resp li { gap: 11px; }
 }
 
+/* =====================================================================
+HUB DE INNOVACIÓN
+Reutiliza organigrama, tipografía y paleta de las demás áreas;
+solo añade las piezas propias de esta sección.
+===================================================================== */
 
+/* Detalle bajo el nombre del líder en el organigrama */
+.org__lider-det {
+display: block; margin-top: 7px; padding-top: 7px;
+border-top: 1px solid rgba(255, 255, 255, .22);
+font-style: normal; font-size: .76rem; opacity: .9; line-height: 1.5;
+}
+/* Etiqueta de estado en la cabecera de una tarjeta del organigrama */
+.cel__et {
+display: block; margin-top: 4px;
+font-size: .66rem; font-weight: 700; color: var(--alerta); letter-spacing: .02em;
+}
+.cel__gente .persona__n b { display: block; font-weight: 700; color: var(--profundo); }
+
+/* Etapas del modelo de operación */
+.etapas { display: grid; gap: 15px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); align-items: start; }
+.etapa {
+background: var(--panel); border: 1px solid var(--linea-sut);
+border-top: 4px solid var(--horizonte);
+border-radius: var(--radio-s); padding: 18px 20px;
+}
+.etapa__cab { display: flex; align-items: baseline; gap: 11px; margin-bottom: 8px; }
+.etapa__n { font-family: var(--serif); font-size: 1.5rem; color: var(--naranja); line-height: 1; }
+.etapa__cab h4 { font-size: 1.12rem; font-family: var(--serif); font-weight: 600; color: var(--profundo); }
+.etapa__flujo {
+font-size: .8rem; font-weight: 600; color: var(--azul);
+background: var(--horizonte-15); border-radius: var(--radio-s);
+padding: 8px 12px; margin-bottom: 13px;
+}
+.etapa__lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.etapa__lista li {
+font-size: .88rem; color: var(--suave); line-height: 1.55;
+display: grid; grid-template-columns: 8px 1fr; gap: 11px; align-items: start;
+}
+.etapa__lista li::before {
+content: ""; width: 7px; height: 7px; margin-top: 7px;
+border-radius: 2px; background: var(--horizonte); transform: rotate(45deg);
+}
+.etapa__nota {
+margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--linea-sut);
+display: grid; gap: 2px;
+}
+.etapa__nota b { font-size: .85rem; color: var(--profundo); }
+.etapa__nota span { font-size: .8rem; color: var(--suave); }
+
+/* Fichas de puesto */
+.fichas { display: grid; gap: 15px; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); align-items: start; }
+.ficha { background: var(--panel); border: 1px solid var(--linea-sut); border-radius: var(--radio-s); overflow: hidden; }
+.ficha__cab {
+background: var(--profundo); color: #fff; padding: 15px 18px;
+display: grid; grid-template-columns: 38px 1fr; gap: 13px; align-items: center;
+}
+.ficha__ini {
+width: 36px; height: 36px; border-radius: 50%;
+background: rgba(255, 255, 255, .16);
+display: inline-flex; align-items: center; justify-content: center;
+font-size: .82rem; font-weight: 700;
+}
+.ficha__cab h5 { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; line-height: 1.25; }
+.ficha__cab > div > span { font-size: .78rem; opacity: .85; }
+.ficha__et {
+grid-column: 1 / -1; font-size: .65rem; font-weight: 700;
+color: var(--horizonte-40); letter-spacing: .02em; line-height: 1.4;
+}
+.ficha__cuerpo { padding: 17px 19px; }
+.ficha__lema { font-size: .95rem; font-weight: 700; color: var(--profundo); margin-bottom: 7px; }
+.ficha__cuerpo > p { font-size: .87rem; color: var(--suave); line-height: 1.6; }
+.ficha__focos { list-style: none; margin: 13px 0 0; padding: 0; display: flex; gap: 6px; flex-wrap: wrap; }
+.ficha__focos li {
+font-size: .74rem; color: var(--azul);
+background: var(--horizonte-15); border: 1px solid var(--horizonte-40);
+border-radius: 999px; padding: 3px 11px;
+}
+.ficha__datos {
+list-style: none; margin: 14px 0 0; padding: 13px 0 0;
+border-top: 1px solid var(--linea-sut); display: grid; gap: 5px;
+}
+.ficha__datos li { font-size: .79rem; color: var(--suave); }
+.ficha .sub { margin: 18px 0 10px; }
+
+/* Responsabilidades dentro de una ficha: título + detalle */
+.resp--ficha li { grid-template-columns: 1fr; padding: 11px 15px; }
+.resp--ficha .resp__t { display: grid; gap: 2px; }
+.resp--ficha .resp__t b { font-size: .86rem; color: var(--profundo); }
+.resp--ficha .resp__t span { font-size: .83rem; color: var(--suave); line-height: 1.55; }
+
+/* Fábrica de ideas */
+.fabrica {
+display: flex; gap: 12px; flex-wrap: wrap; align-items: baseline;
+background: var(--panel); border: 1px solid var(--linea-sut);
+border-left: 4px solid var(--naranja);
+border-radius: 0 var(--radio-s) var(--radio-s) 0;
+padding: 15px 20px; margin-bottom: 24px;
+}
+.fabrica__t { font-weight: 700; color: var(--alerta); font-size: .95rem; }
+.fabrica span:last-child { font-size: .93rem; color: var(--texto); }
+
+/* Tres columnas: servimos a / buscamos / entregamos */
+.disc--3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-bottom: 8px; }
+.disc--3 .disc__t { color: var(--azul); text-transform: none; }
+
+/* En esta tabla la primera columna es el nombre, no un número de fila */
+.tabla-p--hub td:first-child { color: var(--texto); width: auto; min-width: 190px; }
+.tabla-p--hub th:nth-child(2), .tabla-p--hub td:nth-child(2) { min-width: 230px; }
+
+/* Portafolio: cifra clave y líderes */
+.ini__cifra { font-family: var(--serif); font-size: 1.12rem; color: var(--profundo); line-height: 1.2; }
+.lider {
+display: inline-block; font-size: .78rem; color: var(--profundo);
+background: var(--horizonte-15); border: 1px solid var(--horizonte-40);
+border-radius: 999px; padding: 2px 10px; margin: 0 5px 5px 0; white-space: nowrap;
+}
+
+/* Notas al pie de una lámina */
+.notas { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 5px; }
+.notas li { font-size: .79rem; color: var(--tenue); line-height: 1.5; }
+
+@media (max-width: 760px) {
+.ficha__cab { grid-template-columns: 32px 1fr; gap: 10px; }
+.ficha__ini { width: 31px; height: 31px; font-size: .74rem; }
+}
