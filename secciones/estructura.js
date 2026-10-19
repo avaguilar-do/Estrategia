@@ -20,19 +20,24 @@ areas: [
 {
 id: "hub-innovacion",
 nombre: "Hub de innovación",
-lider: "Dirección de Innovación",
-ejemplo: true,
-mision: "Explorar ideas fuera del negocio actual y convertir las que prueban valor en pilotos con dueño y presupuesto.",
+lider: "Subdirección del Hub de Innovación",
+enlace: "#hub-innovacion",
+mision: "Somos dueños de una capacidad institucional y de la metodología de innovación del Grupo. " +
+"Identificamos oportunidades, incubamos, experimentamos, piloteamos y entregamos evidencia " +
+"para las decisiones del negocio y de la Alta Dirección.",
 focos: [
-"Filtrar la cartera de ideas con un criterio único de valor y esfuerzo.",
-"Llevar dos pilotos de IA aplicada a resultado medible antes de diciembre.",
-"Publicar el ciclo de convocatorias internas para toda la organización."
+"Innovación e incubación end to end: de la oportunidad a la recomendación de escalar.",
+"Innovación interna: portafolio de iniciativas y convocatoria.",
+"Innovación abierta: soluciones y alianzas con el ecosistema.",
+"Modelado financiero: caso de negocio y rentabilidad de cada iniciativa.",
+"Inteligencia competitiva: cómo innova la industria en productos, servicios y beneficios.",
+"Programa Lazos y Banca Mayorista: beneficios, costos y definición de producto."
 ],
-iniciativas: [
-{ nombre: "Laboratorio de pilotos con IA", avance: 62 },
-{ nombre: "Convocatoria interna de ideas", avance: 80 },
-{ nombre: "Alianzas con universidades", avance: 35 }
-]
+cifras: [
+{ nombre: "Iniciativas del portafolio 2027", valor: "8" },
+{ nombre: "Integrantes", valor: "4" }
+],
+contacto: "1 subdirección · 2 gerencias · 1 especialista"
 },
 {
 id: "estrategia",
