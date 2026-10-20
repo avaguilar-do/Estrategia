@@ -33,11 +33,12 @@ focos: [
 "Inteligencia competitiva: cómo innova la industria en productos, servicios y beneficios.",
 "Programa Lazos y Banca Mayorista: beneficios, costos y definición de producto."
 ],
-cifras: [
-{ nombre: "Iniciativas del portafolio 2027", valor: "8" },
-{ nombre: "Integrantes", valor: "4" }
-],
-contacto: "1 subdirección · 2 gerencias · 1 especialista"
+contacto: "1 subdirección · 2 gerencias · 1 especialista",
+/* Recuadro lateral de la tarjeta de área */
+temas: [
+"Plan 2027 hub",
+"Autorización iniciativas para Go del año y siguientes pasos"
+]
 },
 {
 id: "estrategia",
@@ -50,10 +51,14 @@ focos: [
 "Revisar el mapa competitivo cada trimestre con datos de mercado.",
 "Traducir la estrategia a objetivos que los equipos puedan usar."
 ],
-iniciativas: [
-{ nombre: "Marco estratégico 2027", avance: 48 },
-{ nombre: "Tablero de indicadores corporativos", avance: 70 },
-{ nombre: "Análisis competitivo regional", avance: 55 }
+/* Recuadro lateral de la tarjeta de área */
+temas: [
+"Niveles de servicio y documentos planes por dirección en apoyo a banca minorista.",
+"Pulir estrategia de banca mayorista",
+"Cerrar KPIs 2027 y revisar estados financieros conforme indicaciones DE con Finanzas",
+"Incorporar roadmap de proyectos conforme a la planeación anual",
+"Plan de incentivos 2027 por dirección",
+"Cierre cifras PAD"
 ]
 },
 {
@@ -71,15 +76,16 @@ focos: [
 "Alinear prioridades, capacidad, dependencias y decisiones.",
 "Acompañar la implementación, la adopción y la transferencia del conocimiento a la operación."
 ],
-programas: [
-{ nombre: "Enfoque al Cliente", sn: 14, total: 15 },
-{ nombre: "Control Interno y Riesgos", sn: 11, total: 11 },
-{ nombre: "Actualización Tecnológica", sn: 4, total: 9 },
-{ nombre: "Programa Lazos", sn: 3, total: 3 },
-{ nombre: "Nueva Generación de Plataformas", sn: 2, total: 3 },
-{ nombre: "Estrategia de Negocio", sn: 1, total: 3 }
-],
-contacto: "17 recursos · 7 células + UX/UI · 35 proyectos"
+contacto: "17 recursos · 7 células + UX/UI · 35 proyectos",
+/* Recuadro lateral de la tarjeta de área */
+temas: [
+"Copiloto",
+"Cierre de iniciativas",
+"Planeacion 2027 en conjunto con PMO",
+"Presupuestación lista",
+"Hacer informe del año de proyectos en conjunto con PMO para decidir si se incorpora al foro de transformación",
+"Realizar una propuesta con base a proyectos 2027 de cómo se estarán visualizando las células en alineación con Miguel Matus"
+]
 },
 {
 id: "nuevas-lineas",
@@ -96,13 +102,12 @@ focos: [
 "Diseñar y ejecutar pilotos comerciales controlados para validar demanda, precio, riesgo y rentabilidad antes de escalar.",
 "Establecer alianzas con actores del ecosistema —fintechs, cámaras, proveedores y programas de fomento— que aceleren el alcance."
 ],
-/* Resumen lateral: pares etiqueta / valor */
-cifras: [
-{ nombre: "Proyecto del área", valor: "Banca Empresarial" },
-{ nombre: "Actividades finalizadas", valor: "13" },
-{ nombre: "Siguientes actividades", valor: "8" }
-],
-contacto: "3 integrantes"
+contacto: "3 integrantes",
+/* Recuadro lateral de la tarjeta de área */
+temas: [
+"Finalizar BC",
+"Assesment DD (para finalizar esta primera etapa de acompañamiento)"
+]
 },
 {
 id: "gestion-estrategia",
@@ -115,27 +120,25 @@ focos: [
 "Cerrar la brecha entre lo planeado y lo ejecutado en cada unidad.",
 "Mantener este tablero como fuente única de verdad."
 ],
-iniciativas: [
-{ nombre: "Ritmo de seguimiento mensual", avance: 88 },
-{ nombre: "Modelo de rendición de cuentas", avance: 52 },
-{ nombre: "Comunicación de la estrategia", avance: 60 }
+/* Recuadro lateral de la tarjeta de área */
+temas: [
+"Cash loans y cómo evoluciona 2027",
+"CAN y cómo evoluciona",
+"Integrar tablero de estrategia, proyectos e innovación en uno solo así como las actividades",
+"Vídeo memorial"
 ]
 },
 {
 id: "pmo",
 nombre: "PMO",
 lider: "Oficina de Proyectos",
-ejemplo: true,
-mision: "Asegurar que el portafolio se ejecuta con método, con recursos claros y con riesgos visibles a tiempo.",
-focos: [
-"Mantener el portafolio priorizado y sin proyectos huérfanos.",
-"Elevar riesgos críticos en menos de 48 horas.",
-"Publicar el estado del portafolio cada dos semanas."
-],
-iniciativas: [
-{ nombre: "Priorización del portafolio", avance: 77 },
-{ nombre: "Gestión de riesgos y dependencias", avance: 58 },
-{ nombre: "Plantillas y gobierno de proyectos", avance: 92 }
+sinInfo: true,
+/* Recuadro lateral de la tarjeta de área */
+temas: [
+"Proyectos dimensionados con TI divididos por Banca y apuntalando los objetivos estratégicos en conjunto con Soluciones de negocio",
+"Taller para dimensionar Business Case Completos.",
+"Revisar si el ahorro por proyecto comprometido en el foro pasado se ha estado cumpliendo. Revisar con soluciones de negocio si puede haber ahorros adicionales",
+"Presentar el estatus de proyectos al cierre, así como roadmap 2027"
 ]
 }
 ]
@@ -163,34 +166,24 @@ return '<button type="button" role="tab" id="tab-' + U.esc(a.id) + '" ' +
 'tabindex="' + (i === 0 ? "0" : "-1") + '">' + U.esc(a.nombre) + "</button>"; }).join("") + "</div>";
 
 var paneles = areas.map(function (a, i) {
-var lado;
-if (a.cifras && a.cifras.length) {
-lado = "<h4>En resumen</h4>" + a.cifras.map(function (c) {
-return '<div class="iniciativa"><div class="iniciativa__cab">' +
-"<span>" + U.esc(c.nombre) + "</span><span>" + U.esc(c.valor) + "</span></div></div>";
-}).join("");
-} else if (a.programas && a.programas.length) {
-lado = "<h4>Programas que atiende</h4>" + a.programas.map(function (p) {
-return '<div class="iniciativa"><div class="iniciativa__cab">' +
-"<span>" + U.esc(p.nombre) + "</span><span>" + p.sn + " de " + p.total + "</span></div>" +
-'<div class="barra" role="img" aria-label="Atiende ' + p.sn + " de " + p.total +
-' proyectos"><i style="width:' + Math.round(p.sn / p.total * 100) + '%"></i></div></div>'; }).join("");
-} else {
-lado = "<h4>Iniciativas en curso</h4>" + (a.iniciativas || []).map(function (x) {
-var pct = Math.max(0, Math.min(100, Number(x.avance) || 0));
-return '<div class="iniciativa"><div class="iniciativa__cab">' +
-"<span>" + U.esc(x.nombre) + "</span><span>" + pct + "%</span></div>" +
-'<div class="barra" role="img" aria-label="Avance ' + pct + ' por ciento">' +
-'<i style="width:' + pct + '%"></i></div></div>'; }).join("");
-}
+/* Recuadro lateral: los temas del área */
+var lado = "<h4>Temas del área</h4>" +
+((a.temas || []).length
+? '<ul class="temas">' + a.temas.map(function (t) {
+return '<li><span class="temas__m" aria-hidden="true"></span>' +
+"<span>" + U.esc(t) + "</span></li>"; }).join("") + "</ul>"
+: '<p class="temas__vacio">No hay información por el momento.</p>');
 
 return '<section class="area" id="panel-' + U.esc(a.id) + '" role="tabpanel" ' +
 'aria-labelledby="tab-' + U.esc(a.id) + '" tabindex="0"' + (i === 0 ? "" : " hidden") + ">" +
 '<div class="area__intro"><h3>' + U.esc(a.nombre) + "</h3>" +
-(a.ejemplo ? '<span class="sello">Contenido de ejemplo · pendiente de cargar</span>' : "") +
-'<p class="area__mision">' + U.esc(a.mision) + "</p>" +
-'<ul class="area__focos">' + (a.focos || []).map(function (f) {
-return "<li>" + U.esc(f) + "</li>"; }).join("") + "</ul>" +
+(a.sinInfo
+? '<span class="sello">No hay información por el momento</span>'
+: (a.ejemplo ? '<span class="sello">Contenido de ejemplo · pendiente de cargar</span>' : "")) +
+(a.mision ? '<p class="area__mision">' + U.esc(a.mision) + "</p>" : "") +
+((a.focos || []).length
+? '<ul class="area__focos">' + a.focos.map(function (f) {
+return "<li>" + U.esc(f) + "</li>"; }).join("") + "</ul>" : "") +
 (a.enlace ? '<p class="area__link"><a href="' + U.esc(a.enlace) +
 '">Ver la página completa de ' + U.esc(a.nombre) + " →</a></p>" : "") +
 "</div>" +
