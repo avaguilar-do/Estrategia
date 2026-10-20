@@ -21,7 +21,7 @@ meta: { titulo: "Hub de Innovación" },
 /* ---------- Organigrama (Área, lámina 2) ---------- */
 lider: {
 iniciales: "DA",
-nombre: "Diana Ángeles Heredia",
+nombre: "Diana Angeles Heredia",
 rol: "Subdirectora del Hub de Innovación",
 detalle: "Responsable end to end · lidera todo el portafolio · innovación abierta y modelado financiero · recomendación a la Alta Dirección"
 },
@@ -75,7 +75,7 @@ baseComun: "conocimiento del cliente · customer centricity · estrategia · del
 
 fichas: [
 {
-iniciales: "DA", nombre: "Diana Ángeles Heredia", puesto: "Subdirectora del Hub de Innovación",
+iniciales: "DA", nombre: "Diana Angeles Heredia", puesto: "Subdirectora del Hub de Innovación",
 lema: "Dueña de la capacidad de innovación del Grupo",
 resumen: "Responde por la capacidad institucional de innovación e incubación de principio a fin: lidera el portafolio, el modelado financiero y la recomendación a la Dirección de Estrategia e Innovación.",
 focos: ["Capacidad y metodología end to end", "Todo el portafolio del Hub",
@@ -178,7 +178,7 @@ queHacemos: [
 
 /* ---------- Carga por equipo · Portafolio 2027 (Área, lámina 3) ---------- */
 portafolio: {
-encabezado: "Diana Ángeles Heredia lidera todo el portafolio",
+encabezado: "Diana Angeles Heredia lidera todo el portafolio",
 subtitulo: "Cada iniciativa tiene un líder y todo el equipo está inmerso en todas las iniciativas del Hub",
 cierre: "Todo el equipo inmerso en las 8 iniciativas del Hub para servir a las bancas",
 notas: [
