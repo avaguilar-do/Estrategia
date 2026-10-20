@@ -17,52 +17,99 @@ window.SOLUCIONES = {
 
 meta: {
 titulo: "Soluciones de Negocio",
-lider: { rol: "Líder Soluciones de Negocio", nombre: "Karen de Jesus Ramirez Uscanga" }
+subtitulo: "Propuesta funcional · Octubre 2026"
 },
 
-cifras: [
-{ valor: "17", etiqueta: "Recursos", nota: "14 en células · 2 UX/UI · 1 líder de área" },
-{ valor: "7", etiqueta: "Células + UX/UI", nota: "organizadas por dominio de negocio" },
-{ valor: "6", etiqueta: "Programas", nota: "comprometidos ante Consejo 2026" },
-{ valor: "35", etiqueta: "Proyectos", nota: "de 44 que suman los 6 programas" }
+/* ---------- Funciograma (Matriz Funciograma Soluciones de Negocio) ---------- */
+funciograma: {
+
+liderazgo: {
+puesto: "Subdirección de Soluciones de Negocio",
+nombre: "Karen de Jesús Ramírez Uscanga",
+responsabilidad: "Conducir la estrategia del área, acordar prioridades y gestionar capacidad, dependencias y escalaciones."
+},
+
+proposito: "Transformar las necesidades del negocio en soluciones que mejoren la experiencia, los procesos y los " +
+"resultados del banco, articulando su definición, priorización y seguimiento con las áreas participantes.",
+
+funciones: [
+{ nombre: "Gestión de demanda y portafolio",
+puntos: ["Recibir y clarificar necesidades de negocio.",
+"Integrar iniciativas y proponer prioridades.",
+"Dar visibilidad a capacidad, dependencias y compromisos."],
+participantes: "Subdirección + Product Owners" },
+
+{ nombre: "Diseño de soluciones y procesos",
+puntos: ["Entender el problema y analizar el proceso actual.",
+"Diseñar el proceso futuro y definir reglas y alcance.",
+"Detallar requerimientos y criterios de aceptación."],
+participantes: "Product Owners + UX/UI + Negocio" },
+
+{ nombre: "Gestión de producto y entrega de valor",
+puntos: ["Gestionar y ordenar el backlog.",
+"Coordinar definiciones y dar seguimiento a entregas.",
+"Validar resultados y medir beneficios."],
+participantes: "Product Owners + TI + Negocio" },
+
+{ nombre: "Experiencia y diseño UX/UI",
+puntos: ["Investigar necesidades de los usuarios.",
+"Diseñar journeys, flujos y prototipos.",
+"Realizar pruebas de usabilidad e identificar mejoras."],
+participantes: "UX/UI · Participación transversal" }
 ],
 
-/* ---------- Células y personas (organigrama, lámina 1) ---------- */
-celulas: [
+/* Ámbitos de atención y equipo asignado. "id" enlaza con los proyectos. */
+ambitos: [
 { id: "clientes", nombre: "Clientes", personas: [
-{ rol: "SR", nombre: "Maria Soledad Rojas Villa" },
-{ rol: "JR", nombre: "Sheila Paola Flores Enriquez" } ] },
+{ rol: "PO Sr.", nombre: "María Soledad Rojas Villa" },
+{ rol: "PO Jr.", nombre: "Sheila Paola Flores Enríquez" } ] },
 
-{ id: "core", nombre: "CORE", personas: [
-{ rol: "SR", nombre: "Jessica Isai Juarez Gomez" },
-{ rol: "JR", nombre: "Maria Fernanda Aguilera Vega" } ] },
+{ id: "core", nombre: "CORE Captación y Crédito", personas: [
+{ rol: "PO Sr.", nombre: "Jessica Isaí Juárez Gómez" },
+{ rol: "PO Jr.", nombre: "María Fernanda Aguilera Vega" } ] },
 
 { id: "originacion", nombre: "Originación", personas: [
-{ rol: "SR", nombre: "Gamaliel Addi Rosas Mora" },
-{ rol: "JR", nombre: "Laura Elena Hernandez Hernandez" } ] },
+{ rol: "PO Sr.", nombre: "Gamaliel Addi Rosas Mora" },
+{ rol: "PO Jr.", nombre: "Laura Elena Hernández Hernández" } ] },
 
-{ id: "plataformas", nombre: "Plataformas de Venta", personas: [
-{ rol: "SR", nombre: "Maria Del Carmen Carmona Lozano" },
-{ rol: "JR", nombre: "Erik Cordoba Garcia" } ] },
+{ id: "plataformas", nombre: "Plataformas de Ventas", personas: [
+{ rol: "PO Sr.", nombre: "Carmen Carmona Lozano" },
+{ rol: "PO Jr.", nombre: "Erik Córdoba García" },
+{ rol: "PO Jr.", nombre: "Luis Enrique Hernández Marín" } ] },
 
-{ id: "mmp", nombre: "MMP", subtitulo: "Mi Maletín Prospección", personas: [
-{ rol: "JR", nombre: "Luis Enrique Hernandez Marin" } ] },
+{ id: "puc", nombre: "PUC · Plataformas de Clientes", personas: [
+{ rol: "PO Sr.", nombre: "Martín Nieto Gómez" },
+{ rol: "PO Jr.", nombre: "Juan Paul García Medrano" },
+{ rol: "PO Jr.", nombre: "Karen Mendoza San Emeterio" } ] },
 
-{ id: "puc", nombre: "PUC", personas: [
-{ rol: "SR", nombre: "Martin Nieto Gomez" },
-{ rol: "JR", nombre: "Karen Mendoza San Emeterio" },
-{ rol: "JR", nombre: "Juan Paul García Medrano" } ] },
-
-{ id: "regulatorios", nombre: "Regulatorios", personas: [
-{ rol: "SR", nombre: "Edsel Fernando Martinez Lira" },
-{ rol: "JR", nombre: "Emily Wendolin Lopez Garcia" } ] }
+/* Regulatorios y SPEI se agrupan visualmente conservando la asignación individual */
+{ id: "regulatorios", nombre: "Regulatorios / SPEI", personas: [
+{ rol: "PO Sr.", nombre: "Edsel Fernando Martínez Lira", ambito: "Regulatorios" },
+{ rol: "PO Sr.", nombre: "Emily Wendolin López García", ambito: "Regulatorios / SPEI",
+puesto: "Product Owner Sr. Regulatorio" } ] }
 ],
 
-uxui: {
-id: "uxui", nombre: "UX/UI", subtitulo: "Transversal a todas las células",
+transversal: {
+nombre: "UX/UI",
+etiqueta: "Función transversal",
 personas: [
-{ rol: "LÍDER", nombre: "Maria Jose Leon Arevalo" },
-{ rol: "ESP", nombre: "Zadkiel Sanchez Soto" }
+{ rol: "Diseñadora UX/UI", nombre: "María José León Arévalo" },
+{ rol: "Diseñador UX/UI", nombre: "Zadkiel Sánchez Soto" }
+]
+},
+
+roles: [
+{ rol: "Product Owner Sr.",
+d: "Liderar la definición de la solución y gestionar el producto en su ámbito, articulando negocio, experiencia y tecnología." },
+{ rol: "Product Owner Jr.",
+d: "Desarrollar análisis y documentación, detallar historias y criterios, dar seguimiento y apoyar las validaciones." },
+{ rol: "UX/UI",
+d: "Asegurar que las soluciones respondan a las necesidades de los usuarios mediante investigación, diseño y pruebas." }
+],
+
+notas: [
+"Propuesta funcional: los bloques no representan nuevas jefaturas ni establecen líneas de reporte.",
+"Las asignaciones de Regulatorios y SPEI se conservan diferenciadas dentro del mismo bloque visual."
 ]
 },
 
@@ -137,6 +184,13 @@ proyectos: [
 { nombre: "Implementación: PUI -Protocolo de Alerta Nacional de Búsqueda de Personas Desaparecidas", programa: "control", celula: "regulatorios", estatus: "En proceso" }
 ],
 
+/* Células del documento de asignación que no existen en la estructura nueva.
+Sus proyectos se listan aparte para no perderlos ni reasignarlos. */
+sinAmbito: {
+aviso: "La célula MMP del documento de asignación no aparece en la estructura funcional propuesta. " +
+"Su proyecto se conserva aquí sin reasignar."
+},
+
 /* ---------- Capacidades y modelo funcional (pp. 12-14) ---------- */
 capacidades: {
 proposito: "Diseñamos y articulamos soluciones integrales que conectan las necesidades del negocio con la " +
@@ -199,202 +253,120 @@ window.VISTAS.soluciones = (function () {
 "use strict";
 
 var SUB = [
-{ id: "organigrama", n: "Organigrama" },
+{ id: "funciograma", n: "Funciograma" },
 { id: "capacidades", n: "Objetivo" },
-{ id: "programas", n: "Proyectos por programa" },
 { id: "carga", n: "Carga por persona" }
 ];
 
-/* ---------- Helpers de datos ---------- */
 function D() { return window.SOLUCIONES || {}; }
-function celula(id) {
-var d = D();
-if (d.uxui && d.uxui.id === id) return d.uxui;
-return (d.celulas || []).filter(function (c) { return c.id === id; })[0] || { nombre: id, personas: [] };
-}
 function programa(id) {
 return (D().programas || []).filter(function (p) { return p.id === id; })[0] || { nombre: id };
 }
-function deCelula(id) {
+function deAmbito(id) {
 return (D().proyectos || []).filter(function (p) { return p.celula === id; });
 }
-function dePrograma(id) {
-return (D().proyectos || []).filter(function (p) { return p.programa === id; });
-}
-function recursos(c) { return (c.personas || []).length; }
 
-/* ================= PROYECTOS POR PROGRAMA ================= */
-function vistaProgramas() {
-var U = window.UI, d = D(), H = [];
-var total = (d.proyectos || []).length;
+/* ================= FUNCIOGRAMA ================= */
+function vistaFunciograma() {
+var U = window.UI, F = D().funciograma || {}, H = [];
 
-H.push(U.cifras(d.cifras || []));
+/* Liderazgo */
+H.push('<div class="lider-box">' +
+'<span class="lider-box__p">' + U.esc(F.liderazgo.puesto) + "</span>" +
+'<b class="lider-box__n">' + U.esc(F.liderazgo.nombre) + "</b>" +
+'<span class="lider-box__r">' + U.esc(F.liderazgo.responsabilidad) + "</span></div>");
 
-/* Estatus del portafolio */
-var est = ["En proceso", "Planeado", "No planeado"].map(function (n) {
-return { nombre: n, n: (d.proyectos || []).filter(function (p) { return p.estatus === n; }).length };
-});
-H.push(U.bloque("Estatus del portafolio",
-"Los documentos registran el estatus de cada proyecto pero no definen qué significa cada valor.",
-U.figura(U.apilada(est),
-"Seis proyectos comprometidos ante Consejo 2026 permanecen sin planear; tres de ellos pertenecen " +
-"al programa de cumplimiento obligatorio.")));
+/* Propósito */
+H.push('<div class="proposito"><p class="sub" style="margin:0 0 6px">Propósito</p>' +
+U.esc(F.proposito) + "</div>");
 
-/* Cobertura por programa */
-var maxTot = Math.max.apply(null, (d.programas || []).map(function (p) { return p.total; })) || 1;
-var ordenados = (d.programas || []).slice().sort(function (a, b) {
-return dePrograma(b.id).length - dePrograma(a.id).length; });
+/* 01 · Funciones del área */
+H.push(U.bloque("Funciones del área", null,
+'<div class="funcs">' + (F.funciones || []).map(function (f) {
+return '<article class="func"><h4>' + U.esc(f.nombre) + "</h4>" +
+'<ul class="func__lista">' + (f.puntos || []).map(function (p) {
+return "<li>" + U.esc(p) + "</li>"; }).join("") + "</ul>" +
+'<p class="func__part">' + U.esc(f.participantes) + "</p></article>";
+}).join("") + "</div>", "funciones"));
 
-var cobertura = '<div class="progs">' + ordenados.map(function (p) {
-var sn = dePrograma(p.id).length, fuera = p.total - sn;
-var np = dePrograma(p.id).filter(function (x) { return x.estatus === "No planeado"; }).length;
-var cels = {}; dePrograma(p.id).forEach(function (x) { cels[x.celula] = 1; });
-var nc = Object.keys(cels).length;
-return '<div class="prog"><div class="prog__cab"><span class="prog__n">' + U.esc(p.nombre) +
-(p.obligatorio ? ' <span class="tag tag--ob">Obligatorio</span>' : "") + "</span>" +
-'<span class="prog__c">' + sn + " de " + p.total + "</span></div>" +
-'<div class="prog__t" style="width:' + (p.total / maxTot * 100).toFixed(1) + '%">' +
-'<i class="prog__sn" style="width:' + (sn / p.total * 100).toFixed(1) + '%"></i>' +
-(fuera ? '<i class="prog__out" style="width:' + (fuera / p.total * 100).toFixed(1) + '%"></i>' : "") +
-"</div>" +
-'<div class="prog__pie"><span>' + nc + (nc === 1 ? " célula" : " células") + "</span>" +
-(np ? '<span class="warn">' + np + " sin planear</span>" : "") + "</div></div>";
+/* 02 · Ámbitos de atención y equipo asignado */
+H.push(U.bloque("Ámbitos de atención y equipo asignado", null,
+'<div class="ambitos">' + (F.ambitos || []).map(function (a) {
+return '<article class="ambito"><h4>' + U.esc(a.nombre) + "</h4>" +
+'<ul class="ambito__gente">' + (a.personas || []).map(function (p) {
+return "<li>" +
+'<span class="tag ' + (/Sr\./.test(p.rol) ? "tag--sr" : "tag--jr") + '">' +
+U.esc(p.rol) + "</span>" +
+'<span class="ambito__n">' + U.esc(p.nombre) +
+(p.ambito ? '<span class="ambito__sub">' + U.esc(p.ambito) + "</span>" : "") +
+"</span></li>"; }).join("") + "</ul></article>";
 }).join("") + "</div>" +
-'<div class="leyenda"><span class="lg"><i class="lg__m s-1"></i>Atendido por Soluciones de Negocio</span>' +
-'<span class="lg"><i class="lg__m s-2"></i>Atendido por otras áreas</span></div>';
 
-H.push(U.bloque("Cobertura por programa",
-"De los 44 proyectos que suman los seis programas, Soluciones de Negocio atiende " + total +
-". Los 9 restantes los atienden áreas que los documentos no identifican.",
-U.figura(cobertura, "Las barras son proporcionales al tamaño total de cada programa.")));
+/* UX/UI transversal */
+(F.transversal
+? '<div class="transversal"><p class="transversal__t">' + U.esc(F.transversal.nombre) +
+' <span>' + U.esc(F.transversal.etiqueta) + "</span></p>" +
+'<ul class="transversal__gente">' + (F.transversal.personas || []).map(function (p) {
+return "<li><b>" + U.esc(p.nombre) + "</b><span>" + U.esc(p.rol) + "</span></li>";
+}).join("") + "</ul></div>"
+: "")));
 
-/* Detalle: proyectos agrupados por programa */
-var detalle = ordenados.map(function (p) {
-var lista = dePrograma(p.id);
-var np = lista.filter(function (x) { return x.estatus === "No planeado"; }).length;
-return '<article class="pgrupo">' +
-'<div class="pgrupo__cab"><span class="pgrupo__n">' + lista.length + "</span>" +
-"<h3>" + U.esc(p.nombre) + "</h3>" +
-(p.obligatorio ? '<span class="tag tag--ob">Cumplimiento obligatorio</span>' : "") +
-'<span class="pgrupo__meta">' + lista.length + " de " + p.total + " proyectos del programa" +
-(np ? '<br><span class="warn" style="color:var(--alerta);font-weight:600">' + np +
-" sin planear</span>" : "") + "</span></div>" +
-'<div class="pgrupo__ben">' + (p.beneficios || []).map(function (b) {
-return '<span class="ben' + (b.v ? "" : " ben--cual") + '">' + U.esc(b.t) +
-(b.v ? " <b>" + U.esc(b.v) + "</b>" : "") + "</span>"; }).join("") + "</div>" +
-'<div class="pgrupo__scroll"><table class="tabla-p">' +
-'<thead><tr><th scope="col">#</th><th scope="col">Proyecto</th>' +
-'<th scope="col">Célula</th><th scope="col">Estatus</th></tr></thead><tbody>' +
-lista.map(function (x, i) {
-return "<tr><td>" + (i + 1) + '</td><td class="pr">' + U.esc(x.nombre) + "</td>" +
-"<td>" + U.esc(celula(x.celula).nombre) + "</td>" +
-'<td><span class="pill ' + (x.estatus === "No planeado" ? "pill--alta" :
-x.estatus === "Planeado" ? "pill--media" : "pill--info") + '">' +
-U.esc(x.estatus) + "</span></td></tr>"; }).join("") +
-"</tbody></table></div></article>";
-}).join("");
+/* 03 · Responsabilidad por rol */
+H.push(U.bloque("Responsabilidad por rol", null,
+'<div class="disc">' + (F.roles || []).map(function (r) {
+return '<div class="disc__c"><p class="disc__t">' + U.esc(r.rol) + "</p><p>" +
+U.esc(r.d) + "</p></div>"; }).join("") + "</div>"));
 
-H.push(U.bloque("Relación de proyectos",
-"Los " + total + " proyectos que atiende Soluciones de Negocio, agrupados por programa.", detalle));
-
-return H.join("");
+if ((F.notas || []).length) {
+H.push('<ul class="notas">' + F.notas.map(function (n) {
+return "<li>" + U.esc(n) + "</li>"; }).join("") + "</ul>");
 }
-
-/* ================= ORGANIGRAMA ================= */
-function vistaOrganigrama() {
-var U = window.UI, d = D(), H = [];
-
-function tarjeta(c, extra) {
-var n = c.id === "uxui" ? null : deCelula(c.id).length;
-var progs = {}; deCelula(c.id).forEach(function (p) { progs[p.programa] = 1; });
-return '<div class="cel' + (extra || "") + '">' +
-'<div class="cel__cab"><span class="cel__n">' + U.esc(c.nombre) + "</span>" +
-(c.subtitulo ? '<span class="cel__sub">' + U.esc(c.subtitulo) + "</span>" : "") +
-'<div class="cel__cifras"><span><b>' + recursos(c) + "</b> rec.</span>" +
-(n === null ? "<span>transversal</span>"
-: "<span><b>" + n + "</b> proy.</span><span><b>" +
-Object.keys(progs).length + "</b> prog.</span>") +
-"</div></div>" +
-'<div class="cel__gente">' + (c.personas || []).map(function (p) {
-var cls = p.rol === "SR" ? "tag--sr" : p.rol === "JR" ? "tag--jr" : "tag--ux";
-return '<div class="persona"><span class="tag ' + cls + '">' + U.esc(p.rol) + "</span>" +
-'<span class="persona__n">' + U.esc(p.nombre) + "</span></div>"; }).join("") + "</div></div>";
-}
-
-var org = '<div class="org">' +
-'<div class="org__lider"><span>' + U.esc(d.meta.lider.rol) + "</span>" +
-"<b>" + U.esc(d.meta.lider.nombre) + "</b></div>" +
-'<div class="org__tronco"></div><div class="org__rama"></div>' +
-'<div class="org__celulas">' +
-(d.celulas || []).map(function (c) { return tarjeta(c); }).join("") +
-(d.uxui ? tarjeta(d.uxui, " cel--ux") : "") +
-"</div></div>";
-
-H.push(U.bloque("Organigrama", null, org));
-
-/* Carga por célula, en número de proyectos */
-var datos = (d.celulas || []).map(function (c) {
-return { nombre: c.nombre, valor: deCelula(c.id).length,
-detalle: recursos(c) + (recursos(c) === 1 ? " recurso" : " recursos") };
-}).sort(function (a, b) { return b.valor - a.valor; });
-
-H.push(U.bloque("Carga de trabajo por célula", "Número de proyectos asignados a cada célula.",
-U.figura(U.barras(datos)) +
-U.tabla("Ver los datos por programa",
-["Programa", "Proyectos", "Total del programa", "Células", "En proceso", "Planeado", "No planeado"],
-(d.programas || []).slice()
-.sort(function (a, b) { return dePrograma(b.id).length - dePrograma(a.id).length; })
-.map(function (p) {
-var l = dePrograma(p.id), cs = {};
-l.forEach(function (x) { cs[x.celula] = 1; });
-var n = function (e) { return l.filter(function (x) { return x.estatus === e; }).length; };
-return [p.nombre, l.length, p.total, Object.keys(cs).length,
-n("En proceso"), n("Planeado"), n("No planeado")]; }))));
 
 return H.join("");
 }
 
 /* ================= CARGA POR PERSONA ================= */
 function vistaCarga() {
-var U = window.UI, d = D(), H = [];
+var U = window.UI, d = D(), F = d.funciograma || {}, H = [];
 
-/* Resumen por persona */
-var filas = [];
-(d.celulas || []).forEach(function (c) {
-(c.personas || []).forEach(function (p) {
-filas.push({ persona: p, celula: c, proyectos: deCelula(c.id) });
-});
-});
+var tarjetas = (F.ambitos || []).map(function (a) {
+var srs = (a.personas || []).filter(function (p) { return /Sr\./.test(p.rol); });
+var proys = deAmbito(a.id);
 
-var tarjetas = filas.map(function (f) {
-return '<article class="pcard' + (f.persona.rol === "SR" ? " pcard--sr" : "") + '">' +
+return '<article class="pcard pcard--sr">' +
 '<div class="pcard__cab"><div class="pcard__id">' +
-'<p class="pcard__n"><span class="tag ' + (f.persona.rol === "SR" ? "tag--sr" : "tag--jr") + '">' +
-U.esc(f.persona.rol) + "</span>" + U.esc(f.persona.nombre) + "</p>" +
-'<p class="pcard__c">Célula ' + U.esc(f.celula.nombre) + " · " +
-(f.persona.rol === "SR" ? "Business Designer" : "Product Owner") + "</p>" +
+'<p class="pcard__n">' + U.esc(a.nombre) + "</p>" +
+'<p class="pcard__c">' + srs.map(function (p) {
+return U.esc(p.nombre) + (p.ambito ? " · " + U.esc(p.ambito) : ""); }).join(" &nbsp;·&nbsp; ") +
+"</p></div>" +
+'<div class="pcard__num"><b>' + proys.length + "</b><span>proyectos</span></div>" +
 "</div>" +
-'<div class="pcard__num"><b>' + f.proyectos.length + "</b><span>proyectos</span></div></div>" +
-'<ol class="pcard__lista">' + f.proyectos.map(function (x) {
+(proys.length
+? '<ul class="pcard__lista">' + proys.map(function (x) {
 return '<li><span class="pcard__p">' + U.esc(x.nombre) +
 '<span class="pcard__prog">' + U.esc(programa(x.programa).nombre) + "</span></span>" +
 '<span class="pill ' + (x.estatus === "No planeado" ? "pill--alta" :
 x.estatus === "Planeado" ? "pill--media" : "pill--info") + '">' +
-U.esc(x.estatus) + "</span></li>"; }).join("") + "</ol></article>";
+U.esc(x.estatus) + "</span></li>"; }).join("") + "</ul>"
+: '<p class="pcard__vacio">Sin proyectos registrados en el documento de asignación.</p>') +
+"</article>";
 }).join("");
 
-H.push(U.bloque("Portafolio por persona", null,
+H.push(U.bloque("Product Owner Sr. por ámbito de atención", null,
 '<div class="personas">' + tarjetas + "</div>"));
 
-/* UX/UI aparte */
-if (d.uxui) {
-var ux = '<div class="personas">' + (d.uxui.personas || []).map(function (p) {
-return '<article class="pcard pcard--ux"><div class="pcard__cab"><div class="pcard__id">' +
-'<p class="pcard__n"><span class="tag tag--ux">' + U.esc(p.rol) + "</span>" + U.esc(p.nombre) + "</p>" +
-'<p class="pcard__c">Transversal a todas las células</p></div></div></article>';
-}).join("") + "</div>";
-
-H.push(U.bloque("UX/UI", null, ux));
+/* Proyectos cuya célula no existe en la estructura nueva */
+var ids = (F.ambitos || []).map(function (a) { return a.id; });
+var huerfanos = (d.proyectos || []).filter(function (p) { return ids.indexOf(p.celula) === -1; });
+if (huerfanos.length) {
+H.push(U.bloque("Proyectos sin ámbito en la estructura propuesta", null,
+'<ul class="acts acts--sig">' + huerfanos.map(function (x) {
+return '<li><span class="acts__m" aria-hidden="true"></span>' +
+'<span class="acts__t">' + U.esc(x.nombre) +
+'<span class="pcard__prog">' + U.esc(programa(x.programa).nombre) + "</span></span></li>";
+}).join("") + "</ul>" +
+((d.sinAmbito && d.sinAmbito.aviso)
+? '<p class="aviso">' + U.esc(d.sinAmbito.aviso) + "</p>" : "")));
 }
 
 return H.join("");
@@ -407,10 +379,10 @@ var U = window.UI, C = D().capacidades || {}, H = [];
 H.push('<div class="cita">' + U.esc(C.proposito) + "</div>");
 
 H.push(U.bloque("Propósito", null,
-'<ol class="verbos">' + (C.verbos || []).map(function (v) {
+'<ul class="verbos">' + (C.verbos || []).map(function (v) {
 return '<li><span class="verbos__n">' + U.esc(v.n) + "</span>" +
 '<span class="verbos__v">' + U.esc(v.v) + "</span>" +
-'<span class="verbos__d">' + U.esc(v.d) + "</span></li>"; }).join("") + "</ol>"));
+'<span class="verbos__d">' + U.esc(v.d) + "</span></li>"; }).join("") + "</ul>"));
 
 H.push(U.bloque("¿Qué hacemos?", null,
 '<div class="disc">' + (C.disciplinas || []).map(function (x) {
@@ -418,8 +390,8 @@ return '<div class="disc__c"><p class="disc__t">' + U.esc(x.t) + "</p><p>" + U.e
 }).join("") + "</div>"));
 
 H.push(U.bloque("La cadena de entrega", null,
-'<ol class="cadena">' + (C.cadena || []).map(function (x) {
-return "<li><b>" + U.esc(x.t) + "</b><span>" + U.esc(x.d) + "</span></li>"; }).join("") + "</ol>"));
+'<ul class="cadena">' + (C.cadena || []).map(function (x) {
+return "<li><b>" + U.esc(x.t) + "</b><span>" + U.esc(x.d) + "</span></li>"; }).join("") + "</ul>"));
 
 H.push(U.bloque("Modelo funcional · evolución de roles", null,
 '<div class="roles">' + (C.roles || []).map(function (r) {
@@ -440,8 +412,7 @@ return '<article class="rol">' +
 return H.join("");
 }
 
-var MAPA = { organigrama: vistaOrganigrama, capacidades: vistaCapacidades,
-programas: vistaProgramas, carga: vistaCarga };
+var MAPA = { funciograma: vistaFunciograma, capacidades: vistaCapacidades, carga: vistaCarga };
 
 return {
 titulo: "Soluciones de Negocio",
