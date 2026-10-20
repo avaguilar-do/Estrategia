@@ -43,8 +43,7 @@ temas: [
 {
 id: "estrategia",
 nombre: "Estrategia",
-lider: "Vicepresidencia de Estrategia",
-ejemplo: true,
+enProceso: true,
 mision: "Definir hacia dónde va la compañía, con qué apuestas compite y cómo se mide el avance.",
 focos: [
 "Cerrar el marco estratégico 2027 con metas por unidad de negocio.",
@@ -64,7 +63,6 @@ temas: [
 {
 id: "soluciones-negocio",
 nombre: "Soluciones de negocio",
-lider: "Subdirección de Soluciones de Negocio",
 enlace: "#soluciones",
 mision:
 "Diseñamos y articulamos soluciones integrales que conectan las necesidades del negocio con la " +
@@ -76,7 +74,6 @@ focos: [
 "Alinear prioridades, capacidad, dependencias y decisiones.",
 "Acompañar la implementación, la adopción y la transferencia del conocimiento a la operación."
 ],
-contacto: "17 recursos · 7 células + UX/UI · 35 proyectos",
 /* Recuadro lateral de la tarjeta de área */
 temas: [
 "Copiloto",
@@ -90,7 +87,6 @@ temas: [
 {
 id: "nuevas-lineas",
 nombre: "Nuevas Líneas de negocio",
-lider: "Gerencia de Nuevas Líneas de Negocio",
 enlace: "#nuevas-lineas",
 mision: "Abrir y consolidar nuevas líneas de negocio en banca Empresarial.",
 focos: [
@@ -102,7 +98,6 @@ focos: [
 "Diseñar y ejecutar pilotos comerciales controlados para validar demanda, precio, riesgo y rentabilidad antes de escalar.",
 "Establecer alianzas con actores del ecosistema —fintechs, cámaras, proveedores y programas de fomento— que aceleren el alcance."
 ],
-contacto: "3 integrantes",
 /* Recuadro lateral de la tarjeta de área */
 temas: [
 "Finalizar BC",
@@ -112,15 +107,16 @@ temas: [
 {
 id: "gestion-estrategia",
 nombre: "Gestión de la estrategia",
-lider: "Oficina de Gestión Estratégica",
-ejemplo: true,
-mision: "Mantener viva la estrategia: seguimiento, ritmo de revisión, comunicación y rendición de cuentas.",
+enlace: "#gestion-estrategia",
+mision:
+"Aportar análisis estratégico sobre la evolución de la industria bancaria y sostener el ciclo de " +
+"gestión de la estrategia, conectando tendencias, referentes del mercado y decisiones ejecutivas " +
+"en un proceso continuo.",
 focos: [
-"Sostener el ritmo de revisión mensual con evidencia, no con opiniones.",
-"Cerrar la brecha entre lo planeado y lo ejecutado en cada unidad.",
-"Mantener este tablero como fuente única de verdad."
+"Inteligencia estratégica",
+"Seguimiento de iniciativas estratégicas",
+"Gestión del portafolio estratégico"
 ],
-/* Recuadro lateral de la tarjeta de área */
 temas: [
 "Cash loans y cómo evoluciona 2027",
 "CAN y cómo evoluciona",
@@ -131,7 +127,6 @@ temas: [
 {
 id: "pmo",
 nombre: "PMO",
-lider: "Oficina de Proyectos",
 sinInfo: true,
 /* Recuadro lateral de la tarjeta de área */
 temas: [
@@ -179,6 +174,8 @@ return '<section class="area" id="panel-' + U.esc(a.id) + '" role="tabpanel" ' +
 '<div class="area__intro"><h3>' + U.esc(a.nombre) + "</h3>" +
 (a.sinInfo
 ? '<span class="sello">No hay información por el momento</span>'
+: a.enProceso
+? '<span class="sello">Información en proceso</span>'
 : (a.ejemplo ? '<span class="sello">Contenido de ejemplo · pendiente de cargar</span>' : "")) +
 (a.mision ? '<p class="area__mision">' + U.esc(a.mision) + "</p>" : "") +
 ((a.focos || []).length
@@ -188,8 +185,10 @@ return "<li>" + U.esc(f) + "</li>"; }).join("") + "</ul>" : "") +
 '">Ver la página completa de ' + U.esc(a.nombre) + " →</a></p>" : "") +
 "</div>" +
 '<div class="area__lado">' + lado +
-'<p class="area__contacto">' + U.esc(a.lider || "") +
-(a.contacto ? " · " + U.esc(a.contacto) : "") + "</p></div></section>";
+(a.lider || a.contacto
+? '<p class="area__contacto">' + U.esc(a.lider || "") +
+(a.lider && a.contacto ? " · " : "") + U.esc(a.contacto || "") + "</p>"
+: "") + "</div></section>";
 }).join("");
 
 return tabs + '<div id="paneles-areas">' + paneles + "</div>";
