@@ -168,7 +168,7 @@ proyectos: [
 { nombre: "Content Manager Objetivo (Filenet)", programa: "actualizacion", celula: "originacion", estatus: "En proceso" },
 { nombre: "Migración a BAW en Contenedores", programa: "actualizacion", celula: "originacion", estatus: "En proceso" },
 
-{ nombre: "Oferta Dinámica 2.0", programa: "plataformas-prog", celula: "mmp", estatus: "En proceso" },
+{ nombre: "Oferta Dinámica 2.0", programa: "plataformas-prog", celula: "plataformas", estatus: "En proceso" },
 { nombre: "Aplicación de Inversiones", programa: "plataformas-prog", celula: "puc", estatus: "En proceso" },
 
 { nombre: "Control de Cambios Proceso de Seguimiento Articulo 61", programa: "control", celula: "regulatorios", estatus: "En proceso" },
@@ -183,13 +183,6 @@ proyectos: [
 { nombre: "CODI", programa: "control", celula: "regulatorios", estatus: "No planeado" },
 { nombre: "Implementación: PUI -Protocolo de Alerta Nacional de Búsqueda de Personas Desaparecidas", programa: "control", celula: "regulatorios", estatus: "En proceso" }
 ],
-
-/* Células del documento de asignación que no existen en la estructura nueva.
-Sus proyectos se listan aparte para no perderlos ni reasignarlos. */
-sinAmbito: {
-aviso: "La célula MMP del documento de asignación no aparece en la estructura funcional propuesta. " +
-"Su proyecto se conserva aquí sin reasignar."
-},
 
 /* ---------- Capacidades y modelo funcional (pp. 12-14) ---------- */
 capacidades: {
@@ -365,8 +358,8 @@ return '<li><span class="acts__m" aria-hidden="true"></span>' +
 '<span class="acts__t">' + U.esc(x.nombre) +
 '<span class="pcard__prog">' + U.esc(programa(x.programa).nombre) + "</span></span></li>";
 }).join("") + "</ul>" +
-((d.sinAmbito && d.sinAmbito.aviso)
-? '<p class="aviso">' + U.esc(d.sinAmbito.aviso) + "</p>" : "")));
+'<p class="aviso">Estos proyectos tienen una célula que no corresponde a ningún ámbito ' +
+'de la estructura funcional. Revisa el campo <code>celula</code> en el bloque de datos.</p>'));
 }
 
 return H.join("");
