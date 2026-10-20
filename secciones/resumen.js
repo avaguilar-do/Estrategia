@@ -61,7 +61,7 @@ return String(b.fecha || "").localeCompare(String(a.fecha || "")); });
 
 H.push(U.bloque("Comunicados", "Comunicados importantes del área de estrategia",
 com.length
-? '<ol class="linea">' + com.map(function (c) {
+? '<ul class="linea">' + com.map(function (c) {
 var p = /^(\d{4})-(\d{2})-(\d{2})$/.exec(c.fecha || "");
 return "<li>" +
 '<div class="linea__f"><b>' + (p ? U.esc(+p[3]) : "") + "</b><span>" +
@@ -72,7 +72,7 @@ U.esc(p ? U.fecha(c.fecha).replace(/^\d+\s/, "") : c.fecha) + "</span></div>" +
 '<span class="pill pill--info">' + U.esc(c.etiqueta || "Comunicado") + "</span>" +
 (c.area ? '<span class="pill">' + U.esc(c.area) + "</span>" : "") +
 (c.autor ? '<span class="meta">Publicado por ' + U.esc(c.autor) + "</span>" : "") +
-"</div></div></li>"; }).join("") + "</ol>"
+"</div></div></li>"; }).join("") + "</ul>"
 : '<p class="vacio">Por ahora no hay comunicados publicados.</p>',
 "comunicados"));
 
@@ -127,4 +127,3 @@ U.esc(e.estado) + "</span>" +
 return H.join("");
 }
 };
-
