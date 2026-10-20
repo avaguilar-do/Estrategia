@@ -221,12 +221,23 @@ font-size: .83rem; color: var(--tenue);
 
 /* ---------------- Responsive ---------------- */
 
+/* El menú pasa a una sola fila deslizable en cuanto deja de caber
+a lo ancho de la cabecera (seis entradas ya no entran bajo 1000px). */
+@media (max-width: 1000px) {
+.nav {
+order: 3; width: 100%;
+overflow-x: auto; overscroll-behavior-x: contain;
+flex-wrap: nowrap; padding-bottom: 2px;
+scrollbar-width: thin;
+}
+.nav a, .nav__grupo { flex: none; }
+.nav a { white-space: nowrap; }
+}
+
 @media (max-width: 760px) {
 .cabecera__inner { padding: 10px 16px; gap: 10px; }
 .marca__logo { height: 28px; }
 .marca__titulo { font-size: .95rem; }
-.nav { order: 3; width: 100%; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 2px; }
-.nav a { white-space: nowrap; }
 .pagina { padding: 0 16px 60px; }
 .encabezado { padding-top: 30px; }
 }
@@ -251,7 +262,7 @@ COMPONENTES
 
 .cifras {
 display: grid; gap: 1px; margin-bottom: 26px;
-grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
 background: var(--linea); border: 1px solid var(--linea);
 border-radius: var(--radio); overflow: hidden;
 }
@@ -300,7 +311,7 @@ padding: 20px 0; border-top: 1px solid var(--linea-sut);
 
 /* ---------------- Rejilla de temas ---------------- */
 
-.rejilla { display: grid; gap: 15px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.rejilla { display: grid; gap: 15px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
 .tema {
 background: var(--panel); border: 1px solid var(--linea-sut);
 border-top: 3px solid var(--horizonte);
@@ -381,7 +392,7 @@ border-radius: var(--radio-s); padding: 14px 20px; text-align: center;
 .org__lider b { font-size: 1.02rem; font-weight: 600; }
 .org__tronco { width: 2px; height: 22px; background: var(--horizonte); margin: 0 auto; }
 .org__rama { height: 2px; background: var(--horizonte); margin: 0 20px 22px; border-radius: 2px; }
-.org__celulas { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); }
+.org__celulas { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 215px), 1fr)); }
 .cel {
 background: var(--horizonte-15); border: 1px solid var(--horizonte-40);
 border-radius: var(--radio-s); padding: 15px 16px;
@@ -399,7 +410,7 @@ display: flex; flex-direction: column; gap: 10px;
 
 /* ---------------- Carga por persona ---------------- */
 
-.personas { display: grid; gap: 15px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+.personas { display: grid; gap: 15px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
 .pcard {
 background: var(--panel); border: 1px solid var(--linea-sut);
 border-left: 4px solid var(--horizonte); border-radius: var(--radio-s);
@@ -527,7 +538,7 @@ grid-template-columns: 32px 118px 1fr; gap: 12px; align-items: baseline; }
 .verbos__v { font-weight: 700; color: var(--alerta); font-size: .93rem; }
 .verbos__d { font-size: .89rem; color: var(--suave); }
 
-.disc { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+.disc { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); }
 .disc__c { background: var(--panel); border: 1px solid var(--linea-sut); border-radius: var(--radio-s); padding: 15px 17px; }
 .disc__t { font-size: .87rem; font-weight: 700; color: var(--profundo); margin-bottom: 6px; }
 .disc__c p { font-size: .84rem; color: var(--suave); line-height: 1.55; }
@@ -537,7 +548,7 @@ grid-template-columns: 32px 118px 1fr; gap: 12px; align-items: baseline; }
 .cadena li b { display: block; font-size: .85rem; color: var(--azul-fuerte); margin-bottom: 3px; }
 .cadena li span { font-size: .81rem; color: var(--suave); }
 
-.roles { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); align-items: start; }
+.roles { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); align-items: start; }
 .rol { background: var(--panel); border: 1px solid var(--linea-sut); border-radius: var(--radio-s); overflow: hidden; }
 .rol__cab { background: var(--profundo); color: #fff; padding: 13px 18px; }
 .rol__cab h5 { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; }
@@ -557,7 +568,7 @@ border-radius: 0 var(--radio-s) var(--radio-s) 0;
 
 /* ---------------- Riesgos y recomendaciones ---------------- */
 
-.riesgos { display: grid; gap: 13px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+.riesgos { display: grid; gap: 13px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
 .rg {
 background: var(--panel); border: 1px solid var(--linea-sut);
 border-left: 5px solid var(--horizonte); border-radius: var(--radio-s); padding: 16px 18px;
@@ -720,7 +731,7 @@ font-size: .66rem; font-weight: 700; color: var(--alerta); letter-spacing: .02em
 .cel__gente .persona__n b { display: block; font-weight: 700; color: var(--profundo); }
 
 /* Etapas del modelo de operación */
-.etapas { display: grid; gap: 15px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); align-items: start; }
+.etapas { display: grid; gap: 15px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); align-items: start; }
 .etapa {
 background: var(--panel); border: 1px solid var(--linea-sut);
 border-top: 4px solid var(--horizonte);
@@ -751,7 +762,7 @@ display: grid; gap: 2px;
 .etapa__nota span { font-size: .8rem; color: var(--suave); }
 
 /* Fichas de puesto */
-.fichas { display: grid; gap: 15px; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); align-items: start; }
+.fichas { display: grid; gap: 15px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)); align-items: start; }
 .ficha { background: var(--panel); border: 1px solid var(--linea-sut); border-radius: var(--radio-s); overflow: hidden; }
 .ficha__cab {
 background: var(--profundo); color: #fff; padding: 15px 18px;
@@ -803,7 +814,7 @@ padding: 15px 20px; margin-bottom: 24px;
 .fabrica span:last-child { font-size: .93rem; color: var(--texto); }
 
 /* Tres columnas: servimos a / buscamos / entregamos */
-.disc--3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-bottom: 8px; }
+.disc--3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); margin-bottom: 8px; }
 .disc--3 .disc__t { color: var(--azul); text-transform: none; }
 
 /* En esta tabla la primera columna es el nombre, no un número de fila */
@@ -867,7 +878,7 @@ font-size: .98rem; line-height: 1.65; max-width: 100ch;
 }
 
 /* 01 · Funciones del área */
-.funcs { display: grid; gap: 15px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); align-items: start; }
+.funcs { display: grid; gap: 15px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); align-items: start; }
 .func {
 background: var(--panel); border: 1px solid var(--linea-sut);
 border-top: 4px solid var(--horizonte);
@@ -890,7 +901,7 @@ font-size: .78rem; font-weight: 700; color: var(--azul);
 }
 
 /* 02 · Ámbitos de atención */
-.ambitos { display: grid; gap: 15px; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); align-items: start; }
+.ambitos { display: grid; gap: 15px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); align-items: start; }
 .ambito {
 background: var(--panel); border: 1px solid var(--linea-sut);
 border-radius: var(--radio-s); padding: 18px 20px;
@@ -932,3 +943,33 @@ font-size: .85rem; color: var(--suave); font-style: italic;
 .ambito__gente li { grid-template-columns: 52px 1fr; gap: 9px; }
 .transversal__gente { gap: 12px; }
 }
+
+/* =====================================================================
+GESTIÓN DE LA ESTRATEGIA · responsabilidades
+===================================================================== */
+.resps { display: grid; gap: 15px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); align-items: start; }
+.respc {
+background: var(--panel); border: 1px solid var(--linea-sut);
+border-top: 4px solid var(--horizonte);
+border-radius: var(--radio-s); padding: 18px 20px;
+}
+.respc__cab { display: flex; align-items: baseline; gap: 11px; margin-bottom: 13px; }
+.respc__n {
+width: 26px; height: 26px; flex: none; border-radius: 50%;
+background: var(--profundo); color: #fff;
+font-size: .8rem; font-weight: 700;
+display: inline-flex; align-items: center; justify-content: center;
+}
+.respc__cab h4 { font-size: 1rem; font-weight: 700; color: var(--profundo); line-height: 1.35; }
+.respc__lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.respc__lista li {
+list-style: none; font-size: .88rem; color: var(--suave); line-height: 1.55;
+display: grid; grid-template-columns: 7px 1fr; gap: 11px; align-items: start;
+}
+.respc__lista li::before {
+content: ""; width: 6px; height: 6px; margin-top: 8px;
+border-radius: 50%; background: var(--naranja);
+}
+
+/* Organigrama de una sola persona: la caja no se estira de lado a lado */
+.org > .org__lider:only-child { margin-bottom: 0; }
