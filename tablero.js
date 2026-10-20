@@ -127,7 +127,7 @@ window.ROUTER = (function () {
 para que se vea que esas áreas cuelgan de Estructura. */
 var MENU = [
 { id: "resumen" },
-{ id: "estructura", hijas: ["hub-innovacion", "soluciones", "nuevas-lineas"] }
+{ id: "estructura", hijas: ["hub-innovacion", "soluciones", "nuevas-lineas", "gestion-estrategia"] }
 ];
 var INICIO = "resumen";
 
@@ -228,3 +228,4 @@ if (a) a.textContent = new Date().getFullYear();
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", inicio);
 else inicio();
 };
+
